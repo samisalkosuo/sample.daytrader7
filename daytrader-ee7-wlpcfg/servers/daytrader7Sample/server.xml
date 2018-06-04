@@ -31,12 +31,16 @@
 	<library filesetRef="DerbyFileset" id="DerbyLib"/>
 	<fileset dir="${shared.resource.dir}/Daytrader7SampleDerbyLibs" id="DerbyFileset" includes="derby-10.10.1.1.jar"/>
 
+	<jdbcDriver id="DerbyClient" libraryRef="DerbyClientLib"/>
+	<library filesetRef="DerbyClientFileset" id="DerbyClientLib"/>
+	<fileset dir="${shared.resource.dir}/Daytrader7SampleDerbyLibs" id="DerbyClientFileset" includes="derbyclient.jar"/>
+
+
 	<authData id="TradeDataSourceAuthData" password="db_password" user="db_username"/>
 	<authData id="TradeAdminAuthData" password="db_password" user="db_username"/>
 
-	<dataSource connectionManagerRef="conMgr1" id="DefaultDataSource" isolationLevel="TRANSACTION_READ_COMMITTED" jdbcDriverRef="DerbyEmbedded" jndiName="jdbc/TradeDataSource" statementCacheSize="60"> 
-		<properties.derby.embedded createDatabase="create" databaseName="${shared.resource.dir}/data/tradedb" password="db_password" user="db_username"/> 
-	</dataSource>
+	<!-- Add database config XML-->
+	<include location="db_config.xml"/>
 
 	<messagingEngine id="defaultME">
 		<queue id="TradeBrokerQueue"/>

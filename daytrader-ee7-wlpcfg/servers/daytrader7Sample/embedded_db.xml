@@ -1,0 +1,6 @@
+<server>
+<!-- Embedded database-->
+	<dataSource connectionManagerRef="conMgr1" id="DefaultDataSource" isolationLevel="TRANSACTION_READ_COMMITTED" jdbcDriverRef="DerbyEmbedded" jndiName="jdbc/TradeDataSource" statementCacheSize="60"> 
+		<properties.derby.embedded createDatabase="create" databaseName="${shared.resource.dir}/data/tradedb" password="db_password" user="db_username"/> 
+	</dataSource>
+</server>
