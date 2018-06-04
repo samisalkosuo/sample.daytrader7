@@ -12,9 +12,9 @@ RUN apt-get update \
 WORKDIR /
 
 #install Maven
-RUN wget -q http://www.nic.funet.fi/pub/mirrors/apache.org/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.zip
-RUN unzip -q apache-maven-3.5.2-bin.zip \
-    && mv /apache-maven-3.5.2 /maven 
+RUN wget -q http://www.nic.funet.fi/pub/mirrors/apache.org/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.zip
+RUN unzip -q apache-maven-3.5.3-bin.zip \
+    && mv /apache-maven-3.5.3 /maven 
 ENV PATH /maven/bin:$PATH
 
 #docker build cache, downloada libs etc
