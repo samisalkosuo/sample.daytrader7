@@ -21,8 +21,10 @@ RUN \
 
 WORKDIR /dbs
 
+#Add Daytrader sample data
 COPY ./tradedb_15000_users.tar.gz ./
 RUN tar -xf tradedb_15000_users.tar.gz
+
 EXPOSE 1527
 
 HEALTHCHECK CMD nc -z localhost 1527 || exit 1
