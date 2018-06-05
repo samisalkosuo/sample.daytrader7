@@ -1,23 +1,11 @@
-
-
-#multistage Docker
+#multistage Docker file
 #build stage builds app
-#use IBM Java to compile because openliberty uses ibm java
-FROM ibmjava:8-sdk as build-stage
-
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends build-essential wget unzip ca-certificates swig \
-    && rm -rf /var/lib/apt/lists/*
+#uses Maven with IBM JDK https://hub.docker.com/r/kazhar/maven/
+FROM kazhar/maven:0.1 as build-stage
 
 WORKDIR /
 
-#install Maven
-RUN wget -q http://www.nic.funet.fi/pub/mirrors/apache.org/maven/maven-3/3.5.3/binaries/apache-maven-3.5.3-bin.zip
-RUN unzip -q apache-maven-3.5.3-bin.zip \
-    && mv /apache-maven-3.5.3 /maven 
-ENV PATH /maven/bin:$PATH
-
-#docker build cache, downloada libs etc
+#docker build cache, download libs etc
 COPY ./docker-build-cache /docker-build-cache
 RUN cd docker-build-cache && mvn install
 
@@ -31,22 +19,23 @@ COPY ./pom.xml ./
 
 RUN mvn install
 
-
 #Use WebSphere Liberty for actual image
 FROM websphere-liberty:javaee7
 
-RUN apt-get update \
-    && apt-get install -y curl
+#RUN apt-get update \
+#    && apt-get install -y curl
 
 #Copy derby client jar
 COPY ./lib/derbyclient.jar /opt/ibm/wlp/usr/shared/resources/Daytrader7SampleDerbyLibs/
 
+#copy binaries from build stage
 COPY --from=build-stage /daytrader-ee7-wlpcfg/servers/daytrader7Sample/ /opt/ibm/wlp/usr/servers/daytrader7Sample/
 COPY --from=build-stage /daytrader-ee7-wlpcfg/shared/resources/Daytrader7SampleDerbyLibs/ /opt/ibm/wlp/usr/shared/resources/Daytrader7SampleDerbyLibs/
 
 #Exposed HTTP port
 EXPOSE 9082
 
+#copy scripts
 COPY ./scripts/start_app.sh ./
 COPY ./scripts/configure_daytrader.sh ./
 
