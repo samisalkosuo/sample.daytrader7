@@ -1,9 +1,38 @@
-# sample.daytrader7 [![Build Status](https://travis-ci.org/WASdev/sample.daytrader7.svg?branch=master)](https://travis-ci.org/WASdev/sample.daytrader7)
+# sample.daytrader7
+
+Java EE7 DayTrader7 Sample application for Liberty app server.
+
+Usage:
+
+- Clone or download this repository.
+- Build Docker image:
+  - ```docker build -t daytrader .``` 
+- Run Docker image using embedded database:
+  - ```docker run -it --rm -p 9080:9082 daytrader```
+  - Running with embedded db, creates and populates db on start.
+- Run Docker image using remote database:
+  - ```docker run -it --rm -p 9080:9082 -e REMOTE_DB_IP_ADDRESS=10.0.75.1 daytrader```
+  - Derby server is in specified IP address.
+  - Remember to create tables and populate database, if not using sample database.
+- Access the app: http://127.0.0.1:9080/daytrader
+- Login credentials:
+  - Username: *uid:0*
+  - Password: *xxx*
+  
+## Sample Derby database
+
+Sample database with Daytrader data is provided as Docker image.
+
+- Change to directory *sample_database*.
+- Build Derby Docker image:
+  - ```docker build -t derby .``` 
+- Run Docker image using :
+  - ```docker run -it --rm -p 1527:1527 derby```
+- Run Daytrader image using remote database:
+  - ```docker run -it --rm -p 9080:9082 -e REMOTE_DB_IP_ADDRESS=10.0.75.1 daytrader```
+  - Derby server is in specified IP address.
 
 # Java EE7: DayTrader7 Sample
-
-Java EE7 DayTrader7 Sample
-
 
 This sample contains the DayTrader 7 benchmark, which is an application built around the paradigm of an online stock trading system. The application allows users to login, view their portfolio, lookup stock quotes, and buy or sell stock shares. With the aid of a Web-based load driver such as Apache JMeter, the real-world workload provided by DayTrader can be used to measure and compare the performance of Java Platform, Enterprise Edition (Java EE) application servers offered by a variety of vendors. In addition to the full workload, the application also contains a set of primitives used for functional and performance testing of various Java EE components and common design patterns.
 
