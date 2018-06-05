@@ -9,7 +9,7 @@ Usage:
   - ```docker build -t daytrader .``` 
 - Run Docker image using embedded database:
   - ```docker run -it --rm -p 9080:9082 daytrader```
-  - Running with embedded db, creates and populates db on start.
+  - Running with embedded db, database tables are created and populated on start.
 - Run Docker image using remote database:
   - ```docker run -it --rm -p 9080:9082 -e REMOTE_DB_IP_ADDRESS=10.0.75.1 daytrader```
   - Derby server is in specified IP address.
