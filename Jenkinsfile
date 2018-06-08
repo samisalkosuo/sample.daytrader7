@@ -7,7 +7,6 @@ pipeline {
       }
       steps {
         sh 'bash jenkins/dev.sh'
-        sh 'cat script.log'      
       }
     }
     stage('Build Docker image') {
