@@ -39,6 +39,9 @@ docker build -t ${__docker_image_name} .'''
       when {
         branch 'develop'
       }
+      environment { 
+        APP_DOWNLOAD_URL= sh (returnStdout: true, script: 'cat DOWNLOAD_URL_${BUILD_ID}.txt').trim()
+      }
       steps {
         slackSend(message: 'Development build ended. App download: ${APP_DOWNLOAD_URL}', channel: '#deployments', failOnError: true)
       }
