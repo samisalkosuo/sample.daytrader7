@@ -14,3 +14,7 @@ __gz_name=${__tar_name}.gz
 
 echo "move ${__gz_name} to HTTP file server path: ${FILE_SERVER_PATH}"
 mv ${__gz_name} ${FILE_SERVER_PATH}/
+
+__download_url=${HTTP_FILE_SERVER}/${__gz_name}
+
+echo "Source package: ${__download_url}"
