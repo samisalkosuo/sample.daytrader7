@@ -8,12 +8,7 @@ readonly LOG_FILE="script.log"
 # Create the destination log file that we can
 # inspect later if something goes wrong with the
 # initialization.
-sudo touch $LOG_FILE
-
-# Make sure that the file is accessible by the user
-# that we want to give permissions to read later
-# (maybe this script is executed by some other user)
-sudo chown ubuntu $LOG_FILE
+touch $LOG_FILE
 
 # Open standard out at `$LOG_FILE` for write.
 # This has the effect 
