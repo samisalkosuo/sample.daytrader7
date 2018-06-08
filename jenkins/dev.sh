@@ -21,4 +21,4 @@ __app_download_url=${HTTP_FILE_SERVER}/${__gz_name}
 
 echo "Source package: ${__app_download_url}"
 
-echo ${__app_download_url} > DOWNLOAD_URL_${BUILD_ID}.txt
+echo ${__app_download_url} > DOWNLOAD_URL.txt
