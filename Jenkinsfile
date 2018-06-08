@@ -6,10 +6,11 @@ pipeline {
         branch 'develop'
       }
       steps {
-        sh 'export __ver=$(cat VERSION);export __tar_name=${APP_NAME}-${__ver}.tar'
-        sh 'tar -cf ${__tar_name} docker-build-cache/ lib/ pom.xml Dockerfile daytrader-ee7-ejb/ daytrader-ee7-web/ daytrader-ee7-wlpcfg/ daytrader-ee7/'
-        sh 'gzip ${__tar_name}'
-        sh 'mv ${__tar_name}* ${FILE_SERVER_PATH}/'
+        sh '''__ver=$(cat VERSION)
+__tar_name=${APP_NAME}-${__ver}.tar
+tar -cf ${__tar_name} docker-build-cache/ lib/ pom.xml Dockerfile daytrader-ee7-ejb/ daytrader-ee7-web/ daytrader-ee7-wlpcfg/ daytrader-ee7/
+gzip ${__tar_name}
+mv ${__tar_name}* ${FILE_SERVER_PATH}/'''
       }
     }
     stage('Build Docker image') {
@@ -17,8 +18,9 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh '__ver=$(cat VERSION);__docker_image_name=${APP_NAME}:${__ver}'
-        sh 'docker build -t ${__docker_image_name} .'
+        sh '''__ver=$(cat VERSION)
+__docker_image_name=${APP_NAME}:${__ver}
+docker build -t ${__docker_image_name} .'''
       }
     }
   }
