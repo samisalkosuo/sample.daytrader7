@@ -40,15 +40,11 @@ docker build -t ${__docker_image_name} .'''
         branch 'develop'
       }
       environment { 
-        APP_DOWNLOAD_URL2 = sh (returnStdout: true, script: 'cat DOWNLOAD_URL.txt').trim()
+        APP_DOWNLOAD_URL = sh (returnStdout: true, script: 'cat DOWNLOAD_URL.txt').trim()
       }
       steps {
-        script {
-          env.APP_DOWNLOAD_URL = readFile 'DOWNLOAD_URL.txt'
-        }
-        sh 'echo "APP_DOWNLOAD_URL2: ${APP_DOWNLOAD_URL2}"'
-        sh 'echo "env.APP_DOWNLOAD_URL: ${env.APP_DOWNLOAD_URL}"'
-        slackSend(message: 'Development build ended.\nApp download: ${env.APP_DOWNLOAD_URL}', channel: '#deployments', failOnError: true)
+        sh 'echo "APP_DOWNLOAD_URL: ${APP_DOWNLOAD_URL}"'
+        slackSend(message: 'Development build ended.\nApp download: ${APP_DOWNLOAD_URL}', channel: '#deployments', failOnError: true)
       }
     }
     stage('end deployment - prod') {
