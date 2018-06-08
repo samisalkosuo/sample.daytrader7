@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('begin notification') {
+    stage('begin deployment - dev') {
       when {
         branch 'develop'
       }
@@ -9,7 +9,7 @@ pipeline {
         slackSend(message: 'Development build began...', channel: '#deployments', failOnError: true)
       }
     }
-    stage('begin notification') {
+    stage('begin deployment - prod') {
       when {
         branch 'master'
       }
@@ -35,7 +35,7 @@ __docker_image_name=${APP_NAME}:${__ver}
 docker build -t ${__docker_image_name} .'''
       }
     }
-    stage('end notification') {
+    stage('end deployment - dev') {
       when {
         branch 'develop'
       }
@@ -43,7 +43,7 @@ docker build -t ${__docker_image_name} .'''
         slackSend(message: 'Development build ended.', channel: '#deployments', failOnError: true)
       }
     }
-    stage('begin notification') {
+    stage('end deployment - prod') {
       when {
         branch 'master'
       }
