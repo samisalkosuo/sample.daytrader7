@@ -25,9 +25,9 @@ Sample database with Daytrader data is provided as Docker image.
 
 - Change to directory *sample_database*.
 - Build Derby Docker image:
-  - ```docker build -t derby .``` 
+  - ```docker build -t derby-daytrader .``` 
 - Run Docker image using :
-  - ```docker run -it --rm -p 1527:1527 derby```
+  - ```docker run -it --rm -p 1527:1527 derby-daytrader```
 - Run Daytrader image using remote database:
   - ```docker run -it --rm -p 9080:9082 -e REMOTE_DB_IP_ADDRESS=10.0.75.1 daytrader```
   - Derby server is in specified IP address.
