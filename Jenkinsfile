@@ -26,6 +26,6 @@ docker build -t ${__docker_image_name} .'''
   }
   environment {
     APP_NAME = 'daytrader7'
-    FILE_SERVER_PATH = '/root/http_files'
+    FILE_SERVER_PATH = '/http_files/'
   }
 }
