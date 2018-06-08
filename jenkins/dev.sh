@@ -22,3 +22,10 @@ __app_download_url=${HTTP_FILE_SERVER}/${__gz_name}
 echo "Source package: ${__app_download_url}"
 
 echo ${__app_download_url} > DOWNLOAD_URL.txt
+
+#CAM USER, CAM_PASSWORD and CAM_URL
+#are set as Jenkins global environment variables
+echo "CAM_USER: ${CAM_USER}"
+echo "CAM_PASSWORD: ${CAM_PASSWORD}"
+echo "CAM_URL: ${CAM_URL}"
+
