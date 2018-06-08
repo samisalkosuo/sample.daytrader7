@@ -1,6 +1,22 @@
 pipeline {
   agent any
   stages {
+    stage('begin notification') {
+      when {
+        branch 'develop'
+      }
+      steps {
+        slackSend(message: 'Development build began...', channel: '#deployments', failOnError: true)
+      }
+    }
+    stage('begin notification') {
+      when {
+        branch 'master'
+      }
+      steps {
+        slackSend(message: 'Production build began...', channel: '#deployments', failOnError: true)
+      }
+    }
     stage('Package code for development deployment') {
       when {
         branch 'develop'
@@ -19,11 +35,22 @@ __docker_image_name=${APP_NAME}:${__ver}
 docker build -t ${__docker_image_name} .'''
       }
     }
-    stage('slack') {
+    stage('end notification') {
+      when {
+        branch 'develop'
+      }
       steps {
-        slackSend(message: 'hello', channel: '#deployments', failOnError: true)
+        slackSend(message: 'Development build ended.', channel: '#deployments', failOnError: true)
       }
     }
+    stage('begin notification') {
+      when {
+        branch 'master'
+      }
+      steps {
+        slackSend(message: 'Production build ended.', channel: '#deployments', failOnError: true)
+      }
+    }  
   }
   environment {
     APP_NAME = 'daytrader7'
