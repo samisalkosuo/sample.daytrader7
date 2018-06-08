@@ -40,7 +40,7 @@ docker build -t ${__docker_image_name} .'''
         branch 'develop'
       }
       steps {
-        slackSend(message: 'Development build ended.', channel: '#deployments', failOnError: true)
+        slackSend(message: 'Development build ended. App download: ${APP_DOWNLOAD_URL}', channel: '#deployments', failOnError: true)
       }
     }
     stage('end deployment - prod') {

@@ -17,4 +17,6 @@ mv ${__gz_name} ${FILE_SERVER_PATH}/
 
 __download_url=${HTTP_FILE_SERVER}/${__gz_name}
 
-echo "Source package: ${__download_url}"
+export APP_DOWNLOAD_URL=${HTTP_FILE_SERVER}/${__gz_name}
+
+echo "Source package: ${APP_DOWNLOAD_URL}"
