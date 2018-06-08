@@ -19,6 +19,11 @@ __docker_image_name=${APP_NAME}:${__ver}
 docker build -t ${__docker_image_name} .'''
       }
     }
+    stage('slack') {
+      steps {
+        slackSend(message: 'hello')
+      }
+    }
   }
   environment {
     APP_NAME = 'daytrader7'
