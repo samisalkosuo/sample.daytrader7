@@ -6,7 +6,7 @@ pipeline {
         branch 'develop'
       }
       steps {
-        slackSend(message: 'Development build began...', channel: '#deployments', failOnError: true)
+        slackSend(message: 'Deployment build started: ${env.JOB_NAME} ${env.BUILD_NUMBER}...', channel: '#deployments', failOnError: true)
       }
     }
     stage('begin deployment - prod') {
@@ -44,7 +44,7 @@ docker build -t ${__docker_image_name} .'''
       }
       steps {
         sh 'echo "APP_DOWNLOAD_URL: ${APP_DOWNLOAD_URL}"'
-        slackSend(message: 'Development build ended.\nApp download: ${env.APP_DOWNLOAD_URL}', channel: '#deployments', failOnError: true)
+        slackSend(message: 'Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\nApp download: ${env.APP_DOWNLOAD_URL}', channel: '#deployments', failOnError: true)
       }
     }
     stage('end deployment - prod') {
