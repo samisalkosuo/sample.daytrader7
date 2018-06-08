@@ -44,7 +44,7 @@ docker build -t ${__docker_image_name} .'''
       }
       steps {
         sh 'echo "APP_DOWNLOAD_URL: ${APP_DOWNLOAD_URL}"'
-        slackSend(message: 'Development build ended.\nApp download: ${APP_DOWNLOAD_URL}', channel: '#deployments', failOnError: true)
+        slackSend(message: 'Development build ended.\nApp download: ${env.APP_DOWNLOAD_URL}', channel: '#deployments', failOnError: true)
       }
     }
     stage('end deployment - prod') {
