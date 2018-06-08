@@ -9,9 +9,9 @@ pipeline {
         sh '''__ver=$(cat VERSION)
 tar -cf ${DOCKER_IMAGE_NAME}-${__ver}.tar docker-build-cache/ lib/ pom.xml Dockerfile daytrader-ee7-ejb/  	daytrader-ee7-web/  	daytrader-ee7-wlpcfg/ daytrader-ee7/
 ls -latr'''
+        sh 'tar -tf daytrader*tar'
       }
     }
-  // build Docker image for production
     stage('Build Docker image') {
       when {
         branch 'master'
@@ -23,7 +23,6 @@ docker build -t ${DOCKER_IMAGE_NAME}:${__ver} .'''
     }
   }
   environment {
-  DOCKER_IMAGE_NAME = 'daytrader7'
+    DOCKER_IMAGE_NAME = 'daytrader7'
   }
-
 }
