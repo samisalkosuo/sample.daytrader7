@@ -40,7 +40,7 @@ docker build -t ${__docker_image_name} .'''
         branch 'develop'
       }
       environment { 
-        APP_DOWNLOAD_URL = sh (returnStdout: true, script: 'cat DOWNLOAD_URL_${BUILD_ID}.txt').trim()
+        APP_DOWNLOAD_URL2 = sh (returnStdout: true, script: 'cat DOWNLOAD_URL.txt').trim()
       }
       steps {
         script {
