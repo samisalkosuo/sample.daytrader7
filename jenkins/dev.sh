@@ -17,6 +17,8 @@ mv ${__gz_name} ${FILE_SERVER_PATH}/
 
 __download_url=${HTTP_FILE_SERVER}/${__gz_name}
 
-export APP_DOWNLOAD_URL=${HTTP_FILE_SERVER}/${__gz_name}
+__app_download_url=${HTTP_FILE_SERVER}/${__gz_name}
 
-echo "Source package: ${APP_DOWNLOAD_URL}"
+echo "Source package: ${__app_download_url}"
+
+echo ${__app_download_url} > DOWNLOAD_URL_${BUILD_ID}.txt
