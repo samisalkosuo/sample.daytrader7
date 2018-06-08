@@ -21,7 +21,7 @@ docker build -t ${__docker_image_name} .'''
     }
     stage('slack') {
       steps {
-        slackSend(message: 'hello')
+        slackSend(message: 'hello', channel: '#deployments', failOnError: true)
       }
     }
   }
