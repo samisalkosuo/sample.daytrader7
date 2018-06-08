@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#quote:
+#exec in bash without command argument will apply its output redirection to all further commands in the script.
+exec
+
 #script for development build
 
 __ver=$(cat VERSION)
