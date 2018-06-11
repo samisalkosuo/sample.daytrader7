@@ -24,15 +24,15 @@ CAM_URL=os.environ['CAM_URL']
 #services
 parameters={"tenantId":CAM_TENANT_ID, "ace_orgGuid":CAM_TEAM_ID, "cloudOE_spaceGuid":ICP_NAMESPACE}
 head = {"Authorization": "bearer " + CAM_BEARER_TOKEN, 'Accept':'application/json'}
-ret = requests.get(CAM_URL + "/cam/composer/api/v1/ServiceInstances",
-                     headers=head,
-                     params=parameters,
-                     verify=False)
-
-serviceInstances=ret.json()
-
-status=""
+status="unknown"
 while status!="active" and status!="error":
+    ret = requests.get(CAM_URL + "/cam/composer/api/v1/ServiceInstances",
+                        headers=head,
+                        params=parameters,
+                        verify=False)
+
+    serviceInstances=ret.json()
+
     #print(json.dumps(serviceInstances, indent=2, sort_keys=True))
     print("Getting status... "),
     for instance in serviceInstances:
