@@ -45,5 +45,7 @@ while status!="active" and status!="error":
         #print(instance["Status"])
         #print("Name: %s ServiceID: %s Instance ID: %s Status: %s" % (instance["name"],instance["ServiceID"],instance["id"],instance["Status"]))
 
-with open('DEPLOYMENT_STATUS', 'w') as f:
-    print(status, file=f)
+f=open('DEPLOYMENT_STATUS', 'w')
+f.write(status)
+f.close()
+

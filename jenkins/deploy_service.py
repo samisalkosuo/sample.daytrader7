@@ -54,11 +54,15 @@ for service in services:
         ret = requests.post(url, data=json.dumps(data), headers=headers,verify=False)
         response = ret.json()
         print(json.dumps(response, indent=2, sort_keys=True))
+        
+        f=open('SERVICE_ID', 'w')
+        f.write(response['serviceId'])
+        f.close()
 
-        with open('SERVICE_ID', 'w') as f:
-            print(response['serviceId'], file=f)
-        with open('INSTANCE_ID', 'w') as f:
-            print(response['serviceId'], file=f)
+        f=open('INSTANCE_ID', 'w')
+        f.write(response['id'])
+        f.close()
+
 
 #        print("Service ID: %s Instance ID: %s" % (response['serviceId'],response['id']))
 
