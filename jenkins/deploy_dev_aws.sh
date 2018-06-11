@@ -56,3 +56,13 @@ __status=$(cat DEPLOYMENT_STATUS)
 
 echo "Deployment status: " ${__status}
 
+if [[ "${__status}" == "error" ]] ; then
+    echo "Error during deployment, check CAM logs"
+    exit 1
+fi 
+
+if [[ "${__status}" == "active" ]] ; then
+    echo "Deployment is active"
+    
+    exit 0
+fi 
