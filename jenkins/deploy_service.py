@@ -55,8 +55,12 @@ for service in services:
         response = ret.json()
         print(json.dumps(response, indent=2, sort_keys=True))
 
-        print("Service ID: %s Instance ID: %s" % (response['serviceId'],response['id']))
-        #find instance id using uuid and get services instances call
+        with open('SERVICE_ID', 'w') as f:
+            print(response['serviceId'], file=f)
+        with open('INSTANCE_ID', 'w') as f:
+            print(response['serviceId'], file=f)
+
+#        print("Service ID: %s Instance ID: %s" % (response['serviceId'],response['id']))
 
 
 

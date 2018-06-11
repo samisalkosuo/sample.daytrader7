@@ -43,5 +43,16 @@ __service_name=Ubuntu@Frankfurt_v3
 echo "Deploying service ${__service_name}..."
 python ${__work_dir}/deploy_service.py ${__service_name} ${__app_download_url}
 
+__service_id=$(cat SERVICE_ID)
+__instance_id=$(cat INSTANCE_ID)
 
+echo "Service ID ${__service_id} Instance ID ${__instance_id}" 
+
+#sleep a moment before continuing
+echo "Getting status..."
+sleep 2
+python ${__work_dir}/get_service_status.py ${__service_id} ${__instance_id}
+__status=$(cat DEPLOYMENT_STATUS)
+
+echo "Deployment status: " ${__status}
 
