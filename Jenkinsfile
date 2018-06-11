@@ -21,7 +21,8 @@ pipeline {
       steps {
         sh '''__ver=$(cat VERSION)
 __docker_image_name=${APP_NAME}:${__ver}
-docker build -t ${__docker_image_name} .'''
+docker build -t ${__docker_image_name} .
+docker tag ${__docker_image_name} ${APP_NAME}:latest'''
       }
     }
     stage('Package code for development deployment') {
