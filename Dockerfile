@@ -22,8 +22,8 @@ RUN mvn install
 #Use WebSphere Liberty for actual image
 FROM websphere-liberty:javaee7
 
-#RUN apt-get update \
-#    && apt-get install -y curl
+RUN apt-get update \
+    && apt-get install -y curl
 
 #Copy derby client jar
 COPY ./lib/derbyclient.jar /opt/ibm/wlp/usr/shared/resources/Daytrader7SampleDerbyLibs/
