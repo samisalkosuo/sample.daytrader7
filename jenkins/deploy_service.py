@@ -7,6 +7,7 @@ import sys
 #deploy service to AWS using CAM
 
 service_name=sys.argv[1]
+app_download_url=sys.argv[2]
 
 CAM_BEARER_TOKEN=os.environ['CAM_BEARER_TOKEN']
 
@@ -46,7 +47,7 @@ for service in services:
             "owner": "nobody",
             "instance_plan": "Standard",
             "instance_parameters": {
-               "app_download_url": "test123"
+               "app_download_url": app_download_url
             }
         }
         headers = {"Authorization": "bearer " + CAM_BEARER_TOKEN,'Content-type': 'application/json', 'Accept':'application/json'}

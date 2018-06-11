@@ -38,7 +38,7 @@ source cam_api_setup.sh
 
 __service_name=Ubuntu@Frankfurt_v3
 echo "Deploying service ${__service_name}..."
-python deploy_service.py ${__service_name}
+python deploy_service.py ${__service_name} ${__app_download_url}
 
 
 
