@@ -33,12 +33,15 @@ echo "ICP_URL: ${ICP_URL}"
 #hardcoded template name
 export CAM_SERVICE_NAME="Ubuntu@Frankfurt_v3"
 
+#set work dir because jenkins executes this from .. dir
+__work_dir=jenkins
+
 echo "Setting up CAM API..."
-source cam_api_setup.sh 
+source ${__work_dir}/cam_api_setup.sh 
 
 __service_name=Ubuntu@Frankfurt_v3
 echo "Deploying service ${__service_name}..."
-python deploy_service.py ${__service_name} ${__app_download_url}
+python ${__work_dir}/deploy_service.py ${__service_name} ${__app_download_url}
 
 
 
