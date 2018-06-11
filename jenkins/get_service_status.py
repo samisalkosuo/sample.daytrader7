@@ -41,7 +41,7 @@ while status!="active" and status!="error":
             print(status)
             if status != None:
                 status = status.lower()
-    time.sleep(5)
+    time.sleep(10)
         #print(instance["Status"])
         #print("Name: %s ServiceID: %s Instance ID: %s Status: %s" % (instance["name"],instance["ServiceID"],instance["id"],instance["Status"]))
 
