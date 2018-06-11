@@ -17,22 +17,19 @@ pipeline {
         slackSend(message: 'Production build began...', channel: '#deployments', failOnError: true)
       }
     }
+    stage('Build Docker image') {
+      steps {
+        sh '''__ver=$(cat VERSION)
+__docker_image_name=${APP_NAME}:${__ver}
+docker build -t ${__docker_image_name} .'''
+      }
+    }
     stage('Package code for development deployment') {
       when {
         branch 'develop'
       }
       steps {
         sh 'bash jenkins/deploy_dev_aws.sh'
-      }
-    }
-    stage('Build Docker image') {
-      when {
-        branch 'master'
-      }
-      steps {
-        sh '''__ver=$(cat VERSION)
-__docker_image_name=${APP_NAME}:${__ver}
-docker build -t ${__docker_image_name} .'''
       }
     }
     stage('end deployment - dev') {
