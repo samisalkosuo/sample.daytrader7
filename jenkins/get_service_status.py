@@ -34,7 +34,7 @@ serviceInstances=ret.json()
 status=""
 while status!="active" and status!="error":
     #print(json.dumps(serviceInstances, indent=2, sort_keys=True))
-    print("Getting status... ", end='')
+    print("Getting status... "),
     for instance in serviceInstances:
         if instance["ServiceID"]==service_id and instance["id"]==instance_id:
             status=instance["Status"]
