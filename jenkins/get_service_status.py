@@ -39,6 +39,7 @@ while status!="active" and status!="error":
         if instance["ServiceID"]==service_id and instance["id"]==instance_id:
             status=instance["Status"]
             print(status)
+            sys.stdout.flush()
             if status != None:
                 status = status.lower()
     time.sleep(10)
