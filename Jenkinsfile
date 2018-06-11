@@ -59,7 +59,6 @@ docker build -t ${__docker_image_name} .'''
   post { 
         failure { 
             slackSend(message: "FAILURE: ${env.JOB_NAME} ${env.BUILD_NUMBER}.", channel: '#deployments')
-
         }
         success { 
             slackSend(message: "SUCCESS: ${env.JOB_NAME} ${env.BUILD_NUMBER}.", channel: '#deployments')
