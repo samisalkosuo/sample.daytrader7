@@ -23,9 +23,22 @@ echo "Source package: ${__app_download_url}"
 
 echo ${__app_download_url} > DOWNLOAD_URL.txt
 
-#CAM USER, CAM_PASSWORD and CAM_URL
+#CAM USER, CAM_PASSWORD, CAM_URL and ICP_URL
 #are set as Jenkins global environment variables
 echo "CAM_USER: ${CAM_USER}"
 echo "CAM_PASSWORD: ${CAM_PASSWORD}"
 echo "CAM_URL: ${CAM_URL}"
+echo "ICP_URL: ${ICP_URL}"
+
+#hardcoded template name
+export CAM_SERVICE_NAME="Ubuntu@Frankfurt_v3"
+
+echo "Setting up CAM API..."
+source cam_api_setup.sh 
+
+__service_name=Ubuntu@Frankfurt_v3
+echo "Deploying service ${__service_name}..."
+python deploy_service.py ${__service_name}
+
+
 
