@@ -61,6 +61,10 @@ docker build -t ${__docker_image_name} .'''
             slackSend(message: "FAILURE: ${env.JOB_NAME} ${env.BUILD_NUMBER}.", channel: '#deployments')
 
         }
+        success { 
+            slackSend(message: "SUCCESS: ${env.JOB_NAME} ${env.BUILD_NUMBER}.", channel: '#deployments')
+
+        }
     }
   environment {
     APP_NAME = 'daytrader7'
