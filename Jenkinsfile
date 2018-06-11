@@ -22,7 +22,7 @@ pipeline {
         branch 'develop'
       }
       steps {
-        sh 'bash jenkins/deploy_dev_aws.sh'
+        sh 'cd jenkins;bash deploy_dev_aws.sh'
       }
     }
     stage('Build Docker image') {
