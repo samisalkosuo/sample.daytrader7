@@ -54,6 +54,7 @@ for service in services:
         ret = requests.post(url, data=json.dumps(data), headers=headers,verify=False)
         response = ret.json()
         print(json.dumps(response, indent=2, sort_keys=True))
+#        print("Service ID: %s Instance ID: %s" % (response['serviceId'],response['id']))
         
         f=open('SERVICE_ID', 'w')
         f.write(response['serviceId'])
@@ -64,7 +65,6 @@ for service in services:
         f.close()
 
 
-#        print("Service ID: %s Instance ID: %s" % (response['serviceId'],response['id']))
 
 
 
