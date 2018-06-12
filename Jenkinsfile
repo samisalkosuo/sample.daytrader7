@@ -41,7 +41,7 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
         IP_ADDRESS = sh (returnStdout: true, script: 'cat IP_ADDRESS.txt').trim()
       }
       steps {
-        sh 'echo "APP_DOWNLOAD_URL: ${APP_DOWNLOAD_URL}"'
+        sh 'echo "APP URL: http://${IP_ADDRESS}/daytrader"'
         slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\nApplication URL: http://${env.IP_ADDRESS}/daytrader", channel: '#deployments', failOnError: true)
       }
     }
