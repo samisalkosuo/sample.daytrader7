@@ -53,7 +53,7 @@ bash jenkins/deploy_prod_icp.sh ${__docker_image_name}
       }
       steps {
         sh 'echo "APP URL: https://${IP_ADDRESS}/"'
-        slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\n\nApplication URL: http://${env.IP_ADDRESS}/daytrader", channel: '#deployments', failOnError: true,color: '#0000FF')
+        slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\n\nApplication URL: https://${IP_ADDRESS}/", channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }
     stage('end deployment - prod') {
