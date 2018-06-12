@@ -38,7 +38,7 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
         branch 'develop'
       }
       environment { 
-        IP_ADDRESS = sh (returnStdout: true, script: 'cat IP_ADDRESS.txt').trim()
+        IP_ADDRESS = sh (returnStdout: true, script: 'cat IP_ADDRESS').trim()
       }
       steps {
         sh 'echo "APP URL: http://${IP_ADDRESS}/daytrader"'
