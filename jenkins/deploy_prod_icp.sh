@@ -40,8 +40,8 @@ kubectl config set-context cluster.local-context --user=admin --namespace=defaul
 kubectl config use-context cluster.local-context
 
 
+#TODO: update apps in place instead of deleting
 echo "Deleting existing deployments..."
-
 __app_name=daytrader
 kubectl delete Deployment ${__app_name}
 kubectl delete ingress ${__app_name}
