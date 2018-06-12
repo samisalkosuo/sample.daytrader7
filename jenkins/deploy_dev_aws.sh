@@ -38,7 +38,7 @@ echo "ICP_URL: ${ICP_URL}"
 #hardcoded template name
 export CAM_SERVICE_NAME="Ubuntu@Frankfurt_v3"
 
-#set work dir because jenkins executes this from .. dir
+#set work dir because jenkins executes this from parent dir
 __work_dir=jenkins
 
 echo "Setting up CAM API..."
