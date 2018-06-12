@@ -5,7 +5,7 @@
 
 #create database tables
 >&2 echo "Creating tables..." 
-curl http://localhost:9082/daytrader/config?action=buildDBTables 2> /dev/null
+curl http://localhost:9082/config?action=buildDBTables 2> /dev/null
 
 #stop server background
 /opt/ibm/wlp/bin/server stop daytrader7Sample 
@@ -26,11 +26,11 @@ curl -X POST -d  action=updateConfig \
 -d  primIterations=1 \
 -d  RunTimeMode=0 \
 -d  WebInterface=0 \
-http://localhost:9082/daytrader/config 2> /dev/null
+http://localhost:9082/config 2> /dev/null
 
 #populate database
 >&2 echo "Populating tables..."
-curl http://localhost:9082/daytrader/config?action=buildDB 2> /dev/null
+curl http://localhost:9082/config?action=buildDB 2> /dev/null
 
 #stop server background
 /opt/ibm/wlp/bin/server stop daytrader7Sample 

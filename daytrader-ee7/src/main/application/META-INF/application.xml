@@ -22,7 +22,7 @@
   <module id="Module_1397771603917">
   	<web>
   		<web-uri>daytrader-ee7-web.war</web-uri>
-  		<context-root>/daytrader</context-root>
+  		<context-root>/</context-root>
   	</web>
   </module>
   <module id="Module_1397771642084">
