@@ -68,6 +68,8 @@ fi
 
 if [[ "${__status}" == "active" ]] ; then
     echo "Deployment is active"
+    ipAddress=$(cat IP_ADDRESS)
+    echo "IP address: " $ipAddress
     
     exit 0
 fi 

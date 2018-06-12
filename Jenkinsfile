@@ -38,11 +38,11 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
         branch 'develop'
       }
       environment { 
-        APP_DOWNLOAD_URL = sh (returnStdout: true, script: 'cat DOWNLOAD_URL.txt').trim()
+        IP_ADDRESS = sh (returnStdout: true, script: 'cat IP_ADDRESS.txt').trim()
       }
       steps {
         sh 'echo "APP_DOWNLOAD_URL: ${APP_DOWNLOAD_URL}"'
-        slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\nApp download: ${env.APP_DOWNLOAD_URL}", channel: '#deployments', failOnError: true)
+        slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\nApplication URL: http://${env.IP_ADDRESS}/daytrader", channel: '#deployments', failOnError: true)
       }
     }
     stage('end deployment - prod') {
