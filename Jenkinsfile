@@ -6,7 +6,7 @@ pipeline {
         branch 'develop'
       }
       steps {
-        slackSend(message: "Deployment build started: ${env.JOB_NAME} ${env.BUILD_NUMBER}...", channel: '#deployments', failOnError: true)
+        slackSend(message: "Deployment build started: ${env.JOB_NAME} ${env.BUILD_NUMBER}...", channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }
     stage('begin deployment - prod') {
@@ -14,7 +14,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        slackSend(message: 'Production build began...', channel: '#deployments', failOnError: true)
+        slackSend(message: "Production build started: ${env.JOB_NAME} ${env.BUILD_NUMBER}...", channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }
     stage('Build Docker image') {
@@ -25,7 +25,7 @@ docker build -t ${__docker_image_name} .
 docker tag ${__docker_image_name} ${APP_NAME}:latest'''
       }
     }
-    stage('Package code for development deployment') {
+    stage('Development deployment to AWS') {
       when {
         branch 'develop'
       }
@@ -42,7 +42,7 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
       }
       steps {
         sh 'echo "APP URL: http://${IP_ADDRESS}/daytrader"'
-        slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\n\nApplication URL: http://${env.IP_ADDRESS}/daytrader", channel: '#deployments', failOnError: true)
+        slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\n\nApplication URL: http://${env.IP_ADDRESS}/daytrader", channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }
     stage('end deployment - prod') {
@@ -50,7 +50,7 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
         branch 'master'
       }
       steps {
-        slackSend(message: 'Production build ended.', channel: '#deployments', failOnError: true)
+        slackSend(message: 'Production build ended.', channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }  
   }
