@@ -22,6 +22,7 @@ docker login ${__docker_registry} -u $CAM_USER -p $CAM_PASSWORD
 #tag and push image
 __icp_image_name=${__docker_registry}/{$__namespace}/${__image_name}
 docker tag ${__image_name} ${__icp_image_name}
+echo "Pushing ${__image_name} to ICP..."
 docker push ${__icp_image_name}
 
 #TODO: helm chart for liberty
@@ -38,4 +39,23 @@ kubectl config set-credentials admin --token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ
 kubectl config set-context cluster.local-context --user=admin --namespace=default
 kubectl config use-context cluster.local-context
 
-kubectl run daytrader --image=${__icp_image_name} --port 9082 --expose=true
+
+echo "Deleting existing deployments..."
+
+__app_name=daytrader
+kubectl delete Deployment ${__app_name}
+kubectl delete ingress ${__app_name}
+kubectl delete service ${__app_name}
+
+echo "Creating kube deployment..."
+kubectl run ${__app_name} --image=${__icp_image_name} --port 9443 --expose=true
+
+#set work dir because jenkins executes this from parent dir
+__work_dir=jenkins
+
+echo "Creating ingress..."
+#name 'daytrader' is hardcoded in yaml file
+kubectl create -f daytrader_ingress.yaml
+
+__ingress_ip=$(kubectl get ing --namespace default daytrader -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+echo https://${__ingress_ip}/daytrader/ > ICP_APP_URL
