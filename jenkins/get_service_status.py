@@ -21,6 +21,17 @@ CAM_TEAM_ID=os.environ['CAM_TEAM_ID']
 ICP_URL=os.environ['ICP_URL']
 CAM_URL=os.environ['CAM_URL']
 
+
+def getIpAddress(instance):
+    #get template output IP address
+    instanceJson=instance["template_mapping"]
+    templateMappingId=json.dumps(instanceJson)
+    templateMappingId=templateMappingId.replace("{","").replace('"',"")
+    templateMappingId=templateMappingId[0:templateMappingId.find(":")]
+    instanceJson=instance["activity_deployment_details"]["instance"][templateMappingId]
+    ipAddress=instanceJson["template_outputs_IP address"]
+    return ipAddress
+
 #services
 parameters={"tenantId":CAM_TENANT_ID, "ace_orgGuid":CAM_TEAM_ID, "cloudOE_spaceGuid":ICP_NAMESPACE}
 head = {"Authorization": "bearer " + CAM_BEARER_TOKEN, 'Accept':'application/json'}
@@ -42,6 +53,12 @@ while status!="active" and status!="error":
             sys.stdout.flush()
             if status != None:
                 status = status.lower()
+                if status == "active":
+                    #get ip address from active status
+                    ipAddress=getIpAddress(instance)
+                    f=open('IP_ADDRESS', 'w')
+                    f.write(ipAddress)
+                    f.close()
     time.sleep(10)
         #print(instance["Status"])
         #print("Name: %s ServiceID: %s Instance ID: %s Status: %s" % (instance["name"],instance["ServiceID"],instance["id"],instance["Status"]))
