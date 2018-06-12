@@ -33,6 +33,17 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
         sh 'bash jenkins/deploy_dev_aws.sh'
       }
     }
+    stage('Production deployment to ICP') {
+      when {
+        branch 'master'
+      }
+      steps {
+        sh ''''__ver=$(cat VERSION)
+__docker_image_name=${APP_NAME}:${__ver}
+bash jenkins/deploy_prod_icp.sh ${__docker_image_name}
+'''
+      }
+    }
     stage('end deployment - dev') {
       when {
         branch 'develop'
@@ -41,7 +52,7 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
         IP_ADDRESS = sh (returnStdout: true, script: 'cat IP_ADDRESS').trim()
       }
       steps {
-        sh 'echo "APP URL: http://${IP_ADDRESS}/daytrader"'
+        sh 'echo "APP URL: https://${IP_ADDRESS}/"'
         slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\n\nApplication URL: http://${env.IP_ADDRESS}/daytrader", channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }
