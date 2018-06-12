@@ -6,7 +6,7 @@ pipeline {
         branch 'develop'
       }
       steps {
-        slackSend(message: "Deployment build started: ${env.JOB_NAME} ${env.BUILD_NUMBER}...", channel: '#deployments', failOnError: true,color: '#0000FF')
+        slackSend(message: "DEV build started: ${env.JOB_NAME} ${env.BUILD_NUMBER}...", channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }
     stage('begin deployment - prod') {
@@ -14,7 +14,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        slackSend(message: "Production build started: ${env.JOB_NAME} ${env.BUILD_NUMBER}...", channel: '#deployments', failOnError: true,color: '#0000FF')
+        slackSend(message: "PROD build started: ${env.JOB_NAME} ${env.BUILD_NUMBER}...", channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }
     stage('Build Docker image') {
