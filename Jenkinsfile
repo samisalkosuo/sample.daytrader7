@@ -42,7 +42,7 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
       }
       steps {
         sh 'echo "APP URL: http://${IP_ADDRESS}/daytrader"'
-        slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\nApplication URL: http://${env.IP_ADDRESS}/daytrader", channel: '#deployments', failOnError: true)
+        slackSend(message: "Development build ended : ${env.JOB_NAME} ${env.BUILD_NUMBER}\n\nApplication URL: http://${env.IP_ADDRESS}/daytrader", channel: '#deployments', failOnError: true)
       }
     }
     stage('end deployment - prod') {
