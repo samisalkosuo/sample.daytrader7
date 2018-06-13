@@ -22,7 +22,7 @@ docker login ${__docker_registry} -u $CAM_USER -p $CAM_PASSWORD
 #remember to add docker registry certificate 
 #https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.3/manage_images/configuring_docker_cli.html
 #tag and push image
-__icp_image_name=${__docker_registry}/{$__namespace}/${__image_name}
+__icp_image_name=${__docker_registry}/$__namespace/${__image_name}
 docker tag ${__image_name} ${__icp_image_name}
 echo "Pushing ${__image_name} to ICP..."
 docker push ${__icp_image_name}
