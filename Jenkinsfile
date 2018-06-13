@@ -38,7 +38,7 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
         branch 'master'
       }
       steps {
-        sh ''''__ver=$(cat VERSION)
+        sh '''__ver=$(cat VERSION)
 __docker_image_name=${APP_NAME}:${__ver}
 bash jenkins/deploy_prod_icp.sh ${__docker_image_name}
 '''
