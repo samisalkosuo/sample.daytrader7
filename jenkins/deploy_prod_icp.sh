@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -o errexit
+
 #Deploy Daytrader app to ICP
 
 __image_name=$1
