@@ -14,9 +14,9 @@ __gz_name=${__tar_name}.gz
 
 #Docker image was build in previous Jenkins stage
 __docker_image_name=${APP_NAME}:latest
-echo "Saving ${__docker_image_name}..."
+echo "Saving image ${__docker_image_name}..."
 docker save ${__docker_image_name} > ${__tar_name}
-echo "Gzipping ${__docker_image_name}..."
+echo "Gzipping ${__tar_name}..."
 gzip ${__tar_name}
 
 echo "move ${__gz_name} to HTTP file server path: ${FILE_SERVER_PATH}"

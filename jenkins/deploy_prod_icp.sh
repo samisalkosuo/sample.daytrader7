@@ -28,6 +28,7 @@ docker push ${__icp_image_name}
 #TODO: helm chart for liberty
 #https://www.ibm.com/support/knowledgecenter/en/was_beta_liberty/com.ibm.websphere.wlp.nd.multiplatform.doc/ae/twlp_icp_helm_way.html
 #https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.3/app_center/create_helm_cli.html?pos=2
+#https://medium.com/ibm-cloud/build-test-deploy-to-ibm-cloud-private-icp-continuous-delivery-with-jenkins-container-7a7a0000b0ec
 #bx pr login -a ${ICP_URL} --skip-ssl-validation -u $CAM_USER -p $CAM_PASSWORD -c id-mycluster-account
 #bx pr cluster-config mycluster
 
