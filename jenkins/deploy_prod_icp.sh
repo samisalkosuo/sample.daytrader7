@@ -50,9 +50,9 @@ echo 1 | bx pr login -a ${ICP_URL} --skip-ssl-validation -u ${CAM_USER} -p ${CAM
 
 echo "Deleting existing deployments..."
 __app_name=daytrader
-kubectl delete Deployment ${__app_name}
-kubectl delete ingress ${__app_name}
-kubectl delete service ${__app_name}
+#kubectl delete Deployment ${__app_name}
+#kubectl delete ingress ${__app_name}
+#kubectl delete service ${__app_name}
 
 echo "Creating kube deployment..."
 kubectl run ${__app_name} --image=${__icp_image_name} --port 9443 --expose=true
