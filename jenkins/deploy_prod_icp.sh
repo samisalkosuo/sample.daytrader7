@@ -44,6 +44,7 @@ kubectl config use-context cluster.local-context
 
 
 #TODO: update apps in place instead of deleting
+
 echo "Deleting existing deployments..."
 __app_name=daytrader
 kubectl delete Deployment ${__app_name}
