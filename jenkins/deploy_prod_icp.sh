@@ -42,6 +42,9 @@ kubectl config set-credentials admin --token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ
 kubectl config set-context cluster.local-context --user=admin --namespace=default
 kubectl config use-context cluster.local-context
 
+#Login to ICP
+#echo 1 selects account account
+echo 1 | bx pr login -a ${ICP_URL} --skip-ssl-validation -u ${CAM_USER} -p ${CAM_PASSWORD}
 
 #TODO: update apps in place instead of deleting
 
