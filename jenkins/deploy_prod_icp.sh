@@ -61,8 +61,8 @@ echo "Creating ingress..."
 #name 'daytrader' is hardcoded in yaml file
 kubectl create -f ${__work_dir}/daytrader_ingress.yaml
 
-#sleep to make sure that ingress is created
-#sleep 4
+#sleep to make sure that ingress is created and docker container is running
+sleep 5
 
 #__ingress_ip=$(kubectl get ing --namespace default daytrader -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 #echo "Ingress IP: " ${__ingress_ip}
