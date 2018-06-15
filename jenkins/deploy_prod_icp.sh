@@ -35,16 +35,19 @@ docker push ${__icp_image_name}
 #bx pr cluster-config mycluster
 
 #Deploy docker image using kubectl
+
+#set kubectls login
+bx pr cluster-config mycluster
 #ICP config TODO: add to Jenkins env variables
-kubectl config set-cluster cluster.local --server=https://169.50.29.32:8010 --insecure-skip-tls-verify=true
-kubectl config set-context cluster.local-context --cluster=cluster.local
-kubectl config set-credentials admin --token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiYnV4Z2k1cm42MmdrZnZiZDdpNWciLCJyZWFsbU5hbWUiOiJjdXN0b21SZWFsbSIsInVuaXF1ZVNlY3VyaXR5TmFtZSI6ImFkbWluIiwiaXNzIjoiaHR0cHM6Ly9teWNsdXN0ZXIuaWNwOjk0NDMvb2lkYy9lbmRwb2ludC9PUCIsImF1ZCI6IjRiOTU5MWJkNjc3ZjI1M2I3NGE1MGU1NDEzODRiOWNmIiwiZXhwIjoxNTI4ODIyNzc3LCJpYXQiOjE1Mjg3OTM5NzcsInN1YiI6ImFkbWluIiwidGVhbVJvbGVNYXBwaW5ncyI6W119.EBxld4Ddi68kjjtWOv2hovv-4917EsNDYsR48YyW19VAQVfPClb2tvjMxArkOHve6xxsXsLXAFK_98n98N6CDTybIRzveNSlh60imFiBzWjDdej-D3JPtrRj7AhzYRvxGFuma8E0Ojjc_Dtl1bfqpQXygG8dbEaiJTBUL1HXCYO7zyqlJ_9WrqjQU_bOSaffieaYYfZhY2-E9as8UnfiIsXBcl7O1zay_s9vFpowuHnbUTAi1pX17GenxwhP8s3VOHqXyYRnVgKSTs_eYXJr9THDCbMCJOQSS36veQUizfgTswKPn567AC06JN4T1q4YBHD0IIHrdMMGJapwMH-IzQ
-kubectl config set-context cluster.local-context --user=admin --namespace=default
-kubectl config use-context cluster.local-context
+#kubectl config set-cluster cluster.local --server=https://169.50.29.32:8010 --insecure-skip-tls-verify=true
+#kubectl config set-context cluster.local-context --cluster=cluster.local
+#kubectl config set-credentials admin --token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiYnV4Z2k1cm42MmdrZnZiZDdpNWciLCJyZWFsbU5hbWUiOiJjdXN0b21SZWFsbSIsInVuaXF1ZVNlY3VyaXR5TmFtZSI6ImFkbWluIiwiaXNzIjoiaHR0cHM6Ly9teWNsdXN0ZXIuaWNwOjk0NDMvb2lkYy9lbmRwb2ludC9PUCIsImF1ZCI6IjRiOTU5MWJkNjc3ZjI1M2I3NGE1MGU1NDEzODRiOWNmIiwiZXhwIjoxNTI4ODIyNzc3LCJpYXQiOjE1Mjg3OTM5NzcsInN1YiI6ImFkbWluIiwidGVhbVJvbGVNYXBwaW5ncyI6W119.EBxld4Ddi68kjjtWOv2hovv-4917EsNDYsR48YyW19VAQVfPClb2tvjMxArkOHve6xxsXsLXAFK_98n98N6CDTybIRzveNSlh60imFiBzWjDdej-D3JPtrRj7AhzYRvxGFuma8E0Ojjc_Dtl1bfqpQXygG8dbEaiJTBUL1HXCYO7zyqlJ_9WrqjQU_bOSaffieaYYfZhY2-E9as8UnfiIsXBcl7O1zay_s9vFpowuHnbUTAi1pX17GenxwhP8s3VOHqXyYRnVgKSTs_eYXJr9THDCbMCJOQSS36veQUizfgTswKPn567AC06JN4T1q4YBHD0IIHrdMMGJapwMH-IzQ
+#kubectl config set-context cluster.local-context --user=admin --namespace=default
+#kubectl config use-context cluster.local-context
 
 #Login to ICP
 #echo 1 selects account account
-echo 1 | bx pr login -a ${ICP_URL} --skip-ssl-validation -u ${CAM_USER} -p ${CAM_PASSWORD}
+#echo 1 | bx pr login -a ${ICP_URL} --skip-ssl-validation -u ${CAM_USER} -p ${CAM_PASSWORD}
 
 #TODO: update apps in place instead of deleting
 
