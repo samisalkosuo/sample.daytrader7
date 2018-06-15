@@ -62,9 +62,9 @@ echo "Creating ingress..."
 kubectl create -f ${__work_dir}/daytrader_ingress.yaml
 
 #sleep to make sure that ingress is created
-sleep 4
+#sleep 4
 
-__ingress_ip=$(kubectl get ing --namespace default daytrader -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
-echo "Ingress IP: " ${__ingress_ip}
-
+#__ingress_ip=$(kubectl get ing --namespace default daytrader -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+#echo "Ingress IP: " ${__ingress_ip}
+__ingress_ip=${ICP_PROXY_IP}
 echo https://${__ingress_ip}/daytrader/ > ICP_APP_URL
