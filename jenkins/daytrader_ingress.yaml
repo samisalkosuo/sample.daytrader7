@@ -22,7 +22,7 @@
         "http": {
           "paths": [
             {
-              "path": "/daytrader",
+              "path": "/daytrader/",
               "backend": {
                 "serviceName": "daytrader",
                 "servicePort": 9443
