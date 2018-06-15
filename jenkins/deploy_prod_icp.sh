@@ -47,9 +47,9 @@ bx pr cluster-config mycluster
 
 echo "Deleting existing deployments..."
 __app_name=daytrader
-kubectl delete Deployment ${__app_name} || True
-kubectl delete ingress ${__app_name} || True
-kubectl delete service ${__app_name} || True
+kubectl delete Deployment ${__app_name} || true
+kubectl delete ingress ${__app_name} || true
+kubectl delete service ${__app_name} || true
 
 echo "Creating kube deployment..."
 kubectl run ${__app_name} --image=${__icp_image_name} --port 9443 --expose=true
