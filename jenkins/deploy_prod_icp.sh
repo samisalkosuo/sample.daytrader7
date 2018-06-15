@@ -65,4 +65,6 @@ kubectl create -f ${__work_dir}/daytrader_ingress.yaml
 sleep 4
 
 __ingress_ip=$(kubectl get ing --namespace default daytrader -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+echo "Ingress IP: " ${__ingress_ip}
+
 echo https://${__ingress_ip}/daytrader/ > ICP_APP_URL
