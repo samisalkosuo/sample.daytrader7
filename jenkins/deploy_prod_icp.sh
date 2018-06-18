@@ -38,7 +38,7 @@ docker push ${__icp_image_name}
 
 #Login to ICP
 #echo 1 selects account account
-#echo 1 | bx pr login -a ${ICP_URL} --skip-ssl-validation -u ${CAM_USER} -p ${CAM_PASSWORD}
+echo 1 | bx pr login -a ${ICP_URL} --skip-ssl-validation -u ${CAM_USER} -p ${CAM_PASSWORD}
 
 #configure kubectl 
 bx pr cluster-config mycluster
