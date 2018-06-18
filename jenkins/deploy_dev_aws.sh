@@ -26,7 +26,7 @@ __download_url=${HTTP_FILE_SERVER}/${__gz_name}
 
 __app_download_url=${HTTP_FILE_SERVER}/${__gz_name}
 
-echo "Source package: ${__app_download_url}"
+echo "Image ownload URL: ${__app_download_url}"
 
 echo ${__app_download_url} > DOWNLOAD_URL.txt
 
