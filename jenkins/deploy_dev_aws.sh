@@ -58,7 +58,7 @@ echo "Service ID ${__service_id} Instance ID ${__instance_id}"
 
 #sleep a moment before continuing
 echo "Getting status..."
-sleep 3
+sleep 4
 python ${__work_dir}/get_service_status.py ${__service_id} ${__instance_id} 2> /dev/null
 __status=$(cat DEPLOYMENT_STATUS)
 
