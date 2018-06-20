@@ -79,7 +79,5 @@ bash jenkins/deploy_prod_icp.sh ${__docker_image_name}
     }
   environment {
     APP_NAME = 'daytrader7'
-    FILE_SERVER_PATH = '/http_files/'
-    HTTP_FILE_SERVER = 'http://159.122.99.115:8088'
   }
 }
