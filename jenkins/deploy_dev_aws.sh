@@ -2,6 +2,9 @@
 
 set -o errexit
 
+#hardcoded template name
+export CAM_SERVICE_NAME="Daytrader@Frankfurt"
+
 __ver=$(cat VERSION) 
 __tar_name=${APP_NAME}.tar
 # echo "Version: ${__ver}"
@@ -37,8 +40,6 @@ echo "CAM_PASSWORD: ${CAM_PASSWORD}"
 echo "CAM_URL: ${CAM_URL}"
 echo "ICP_URL: ${ICP_URL}"
 
-#hardcoded template name
-export CAM_SERVICE_NAME="Daytrader@Frankfurt"
 
 #set work dir because jenkins executes this from parent dir
 __work_dir=jenkins
@@ -46,7 +47,7 @@ __work_dir=jenkins
 echo "Setting up CAM API..."
 source ${__work_dir}/cam_api_setup.sh 
 
-__service_name=Ubuntu@Frankfurt_v3
+__service_name=${CAM_SERVICE_NAME}
 echo "Deploying service ${__service_name}..."
 python ${__work_dir}/deploy_service.py ${__service_name} ${__app_download_url}
 
