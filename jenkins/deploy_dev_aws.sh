@@ -38,7 +38,7 @@ echo "CAM_URL: ${CAM_URL}"
 echo "ICP_URL: ${ICP_URL}"
 
 #hardcoded template name
-export CAM_SERVICE_NAME="Ubuntu@Frankfurt_v3"
+export CAM_SERVICE_NAME="Daytrader@Frankfurt"
 
 #set work dir because jenkins executes this from parent dir
 __work_dir=jenkins
