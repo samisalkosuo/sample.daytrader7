@@ -7,3 +7,5 @@
 /build/
 /.gradle/
 .vscode/
+scripts/daytrader_cookiefile.txt
+scripts/sell_holdings_of_users.sh
