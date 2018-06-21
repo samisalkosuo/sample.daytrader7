@@ -1,6 +1,4 @@
-# sample.daytrader7
-
-Java EE7 DayTrader7 Sample application for Liberty app server.
+# DayTrader7 - sample Java EE7 application
 
 Usage:
 
