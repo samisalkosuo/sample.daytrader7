@@ -39,6 +39,7 @@ Demonstrate DevOps pipeline using this app and, for example, Jenkins, IBM Cloud 
 - Change this application:
   - open [daytrader-ee7-web/src/main/webapp/contentHome.html](daytrader-ee7-web/src/main/webapp/contentHome.html)
   - Change the HTML code.
+  - Update version in [VERSION](VERSION).
 - Commit and let DevOps pipeline do the deployment.
 - Go to application and see the change you made.
 
