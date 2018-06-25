@@ -56,11 +56,13 @@ __instance_id=$(cat INSTANCE_ID)
 
 echo "Service ID ${__service_id} Instance ID ${__instance_id}" 
 
-#sleep a moment before continuing
 echo "Getting status..."
-sleep 4
 python ${__work_dir}/get_service_status.py ${__service_id} ${__instance_id} 2> /dev/null
 __status=$(cat DEPLOYMENT_STATUS)
+
+#sleep a moment before continuing
+#so that DayTrader has finished initialization
+sleep 10
 
 echo "Deployment status: " ${__status}
 
