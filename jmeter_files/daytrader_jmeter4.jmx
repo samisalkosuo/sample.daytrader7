@@ -15,7 +15,7 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">10</stringProp>
+          <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">10</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
@@ -51,7 +51,7 @@
           <stringProp name="maximumValue">10</stringProp>
           <stringProp name="minimumValue">0</stringProp>
           <stringProp name="outputFormat">uid:0</stringProp>
-          <boolProp name="perThread">false</boolProp>
+          <boolProp name="perThread">true</boolProp>
           <stringProp name="randomSeed"></stringProp>
           <stringProp name="variableName">user.id</stringProp>
         </RandomVariableConfig>
@@ -60,16 +60,16 @@
           <stringProp name="maximumValue">500</stringProp>
           <stringProp name="minimumValue">100</stringProp>
           <stringProp name="outputFormat">0</stringProp>
-          <boolProp name="perThread">false</boolProp>
+          <boolProp name="perThread">true</boolProp>
           <stringProp name="randomSeed"></stringProp>
           <stringProp name="variableName">buy.quantity</stringProp>
         </RandomVariableConfig>
         <hashTree/>
         <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Symbol IDs" enabled="true">
-          <stringProp name="maximumValue">4</stringProp>
+          <stringProp name="maximumValue">9999</stringProp>
           <stringProp name="minimumValue">0</stringProp>
           <stringProp name="outputFormat">s:0</stringProp>
-          <boolProp name="perThread">false</boolProp>
+          <boolProp name="perThread">true</boolProp>
           <stringProp name="randomSeed"></stringProp>
           <stringProp name="variableName">symbol.id</stringProp>
         </RandomVariableConfig>

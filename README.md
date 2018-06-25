@@ -41,6 +41,12 @@ Demonstrate DevOps pipeline using this app and, for example, Jenkins, IBM Cloud 
 - Commit and let DevOps pipeline do the deployment.
 - Go to application and see the change you made.
 
+## Jmeter
+
+[Jmeter test plan](jmeter_files/daytrader_jmeter4.jmx) is available. This plan is used to put load on the DayTrader application. It is not meant to be performance testing plan of DayTrader application or infrastructure where it runs.
+
+Plan uses JMeter 4.0. It simulates user who logs in, views portfolio, views quotes, buys stock, views quotes again and then logs out.
+
 # Java EE7: DayTrader7 Sample
 
 This sample contains the DayTrader 7 benchmark, which is an application built around the paradigm of an online stock trading system. The application allows users to login, view their portfolio, lookup stock quotes, and buy or sell stock shares. With the aid of a Web-based load driver such as Apache JMeter, the real-world workload provided by DayTrader can be used to measure and compare the performance of Java Platform, Enterprise Edition (Java EE) application servers offered by a variety of vendors. In addition to the full workload, the application also contains a set of primitives used for functional and performance testing of various Java EE components and common design patterns.
