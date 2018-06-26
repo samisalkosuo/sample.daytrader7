@@ -2,16 +2,16 @@
 
 set -o errexit
 
+#install python prereqs
+pip install requests
+#install AWS CLI for accessing Object Storage
+pip install awscli
+
 #hardcoded template name
 export CAM_SERVICE_NAME="Daytrader@Frankfurt"
 
 __ver=$(cat VERSION) 
 __tar_name=${APP_NAME}.tar
-# echo "Version: ${__ver}"
-# echo "tar and gzip source"
-
-# tar -cf ${__tar_name} docker-build-cache/ scripts/ lib/ pom.xml Dockerfile daytrader-ee7-ejb/ daytrader-ee7-web/ daytrader-ee7-wlpcfg/ daytrader-ee7/ 
-# gzip ${__tar_name}
 
 __gz_name=${__tar_name}.gz
 
@@ -22,16 +22,22 @@ docker save ${__docker_image_name} > ${__tar_name}
 echo "Gzipping ${__tar_name}..."
 gzip ${__tar_name}
 
-echo "move ${__gz_name} to HTTP file server path: ${FILE_SERVER_PATH}"
-mv ${__gz_name} ${FILE_SERVER_PATH}/
+export DOCKER_IMAGE_TAR_FILE=${__gz_name}
+#upload file to object storage
+#and store download url to file DOWNLOAD_URL.txt
+sh upload_to_object_storage.sh
 
-__download_url=${HTTP_FILE_SERVER}/${__gz_name}
+# echo "move ${__gz_name} to HTTP file server path: ${FILE_SERVER_PATH}"
+# mv ${__gz_name} ${FILE_SERVER_PATH}/
 
-__app_download_url=${HTTP_FILE_SERVER}/${__gz_name}
+# __download_url=${HTTP_FILE_SERVER}/${__gz_name}
 
-echo "Image ownload URL: ${__app_download_url}"
+# __app_download_url=${HTTP_FILE_SERVER}/${__gz_name}
 
-echo ${__app_download_url} > DOWNLOAD_URL.txt
+# echo "Image download URL: ${__app_download_url}"
+
+# echo ${__app_download_url} > DOWNLOAD_URL.txt
+
 
 #CAM USER, CAM_PASSWORD, CAM_URL and ICP_URL
 #are set as Jenkins global environment variables
