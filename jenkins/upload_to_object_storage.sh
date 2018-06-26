@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -o errexit
+
+
 #uploads application file to IBM Object Storage
 
 #these variables must be available in environment
