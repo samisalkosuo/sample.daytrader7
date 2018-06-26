@@ -36,7 +36,7 @@ export AWS_ACCESS_KEY_ID=$(tail -n +4 ${__key_file} | python -c "import sys,json
 export AWS_SECRET_ACCESS_KEY=$(tail -n +4 ${__key_file} | python -c "import sys,json;print(json.load(sys.stdin)['cos_hmac_keys']['secret_access_key'])")
 
 #bucket name must be unique
-__bucket_name=s3://${IBMCLOUD_ORGANIZATION}_${IBMCLOUD_SPACE}_icpcamdevopsdemo
+__bucket_name=s3://${IBMCLOUD_ORGANIZATION}-${IBMCLOUD_SPACE}-icpcamdevopsdemo
 #__uuid=$(python -c "import uuid;print(str(uuid.uuid4()))")
 #__bucket_name=s3://${__uuid}
 
