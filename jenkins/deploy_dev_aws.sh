@@ -7,6 +7,10 @@ pip install requests
 #install AWS CLI for accessing Object Storage
 pip install awscli
 
+#set work dir because jenkins executes this from parent dir
+__work_dir=jenkins
+
+
 #hardcoded template name
 export CAM_SERVICE_NAME="Daytrader@Frankfurt"
 
@@ -25,7 +29,7 @@ gzip ${__tar_name}
 export DOCKER_IMAGE_TAR_FILE=${__gz_name}
 #upload file to object storage
 #and store download url to file DOWNLOAD_URL.txt
-sh upload_to_object_storage.sh
+sh ${__work_dir}/upload_to_object_storage.sh
 
 # echo "move ${__gz_name} to HTTP file server path: ${FILE_SERVER_PATH}"
 # mv ${__gz_name} ${FILE_SERVER_PATH}/
@@ -45,10 +49,6 @@ echo "CAM_USER: ${CAM_USER}"
 echo "CAM_PASSWORD: ${CAM_PASSWORD}"
 echo "CAM_URL: ${CAM_URL}"
 echo "ICP_URL: ${ICP_URL}"
-
-
-#set work dir because jenkins executes this from parent dir
-__work_dir=jenkins
 
 echo "Setting up CAM API..."
 source ${__work_dir}/cam_api_setup.sh 
