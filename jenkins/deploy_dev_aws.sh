@@ -7,6 +7,8 @@ pip install requests
 #install AWS CLI for accessing Object Storage
 pip install awscli
 
+export PATH=~/.local/bin/:$PATH
+
 #set work dir because jenkins executes this from parent dir
 __work_dir=jenkins
 
