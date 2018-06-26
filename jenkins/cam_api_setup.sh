@@ -11,5 +11,3 @@ export ICP_NAMESPACE=$(curl -k -X GET -H "Authorization: Bearer ${CAM_BEARER_TOK
 
 export CAM_TEAM_ID=$(curl -k -X GET -H "Authorization: Bearer ${CAM_BEARER_TOKEN}" ${CAM_URL}/cam/tenant/api/v1/tenants/getTenantOnPrem 2> /dev/null | python -c "import sys, json; print json.load(sys.stdin)['namespaces'][0]['teamId']")
 
-#install python prereqs
-pip install requests
