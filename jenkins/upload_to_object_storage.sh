@@ -32,8 +32,16 @@ fi
 __key_file=key.txt
 ibmcloud cf service-key ${__cos_instance_name} ${__cos_key_name} > ${__key_file}
 
-export AWS_ACCESS_KEY_ID=$(tail -n +4 ${__key_file} | python -c "import sys,json;print(json.load(sys.stdin)['cos_hmac_keys']['access_key_id'])")
-export AWS_SECRET_ACCESS_KEY=$(tail -n +4 ${__key_file} | python -c "import sys,json;print(json.load(sys.stdin)['cos_hmac_keys']['secret_access_key'])")
+pwd
+ls
+echo "ls .."
+ls ..
+cat ${__key_file}
+
+#export AWS_ACCESS_KEY_ID=$(tail -n +4 ${__key_file} | python -c "import sys,json;print(json.load(sys.stdin)['cos_hmac_keys']['access_key_id'])")
+#export AWS_SECRET_ACCESS_KEY=$(tail -n +4 ${__key_file} | python -c "import sys,json;print(json.load(sys.stdin)['cos_hmac_keys']['secret_access_key'])")
+export AWS_ACCESS_KEY_ID=$(cat ${__key_file} | python jenkins/get_cos_keys.py access)
+export AWS_ACCESS_KEY_ID=$(cat ${__key_file} | python jenkins/get_cos_keys.py secret)
 
 #bucket name must be unique
 __bucket_name=s3://${IBMCLOUD_ORGANIZATION}_${IBMCLOUD_SPACE}_icpcamdevopsdemo
