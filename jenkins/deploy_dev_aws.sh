@@ -58,6 +58,7 @@ source ${__work_dir}/cam_api_setup.sh
 __service_name=${CAM_SERVICE_NAME}
 echo "Deploying service ${__service_name}..."
 __app_download_url=$(cat DOWNLOAD_URL.txt)
+echo "App download URL: ${__app_download_url}" 
 python ${__work_dir}/deploy_service.py ${__service_name} ${__app_download_url}
 
 __service_id=$(cat SERVICE_ID)
