@@ -32,7 +32,7 @@ Sample database with Daytrader data is provided as Docker image.
 
 ## Use case
 
-Demonstrate DevOps pipeline using this app and, for example, Jenkins, IBM Cloud Private and AWS.
+[Demonstrate DevOps pipeline](https://github.com/samisalkosuo/icp-cam-devops-demo) using this app and, for example, Jenkins, IBM Cloud Private and AWS.
 
 - Change this application:
   - open [daytrader-ee7-web/src/main/webapp/contentHome.html](daytrader-ee7-web/src/main/webapp/contentHome.html)
