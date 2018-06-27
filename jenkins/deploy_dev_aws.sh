@@ -32,18 +32,6 @@ export DOCKER_IMAGE_TAR_FILE=${__gz_name}
 #and store download url to file DOWNLOAD_URL.txt
 sh ${__work_dir}/upload_to_object_storage.sh
 
-# echo "move ${__gz_name} to HTTP file server path: ${FILE_SERVER_PATH}"
-# mv ${__gz_name} ${FILE_SERVER_PATH}/
-
-# __download_url=${HTTP_FILE_SERVER}/${__gz_name}
-
-# __app_download_url=${HTTP_FILE_SERVER}/${__gz_name}
-
-# echo "Image download URL: ${__app_download_url}"
-
-# echo ${__app_download_url} > DOWNLOAD_URL.txt
-
-
 #CAM USER, CAM_PASSWORD, CAM_URL and ICP_URL
 #are set as Jenkins global environment variables
 echo "CAM_USER: ${CAM_USER}"
