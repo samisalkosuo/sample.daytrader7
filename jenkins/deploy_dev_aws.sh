@@ -70,7 +70,7 @@ python ${__work_dir}/get_service_status.py ${__service_id} ${__instance_id} 2> /
 __status=$(cat DEPLOYMENT_STATUS)
 
 #sleep a moment before continuing
-#so that DayTrader has finished initialization
+#to make sure that DayTrader (database) has finished initialization
 sleep 10
 
 echo "Deployment status: " ${__status}
