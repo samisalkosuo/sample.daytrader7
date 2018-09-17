@@ -2,6 +2,8 @@
 
 set -o errexit
 
+exit 1
+
 #install python prereqs
 pip install requests
 #install AWS CLI for accessing Object Storage

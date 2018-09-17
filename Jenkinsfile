@@ -32,6 +32,8 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
       }
       steps {
         slackSend(message: "Deploying to AWS using CAM...", channel: '#deployments', failOnError: true,color: '#0000FF')
+        sh 'bash jenkins/dev_aws/deploy_step_1.sh'
+        sh 'bash jenkins/dev_aws/deploy_step_2.sh'
         sh 'bash jenkins/deploy_dev_aws.sh'
       }
     }
