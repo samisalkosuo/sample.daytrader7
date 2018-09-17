@@ -19,6 +19,7 @@ pipeline {
     }
     stage('Build Docker image') {
       steps {
+        slackSend(message: "Building Docker image...", channel: '#deployments', failOnError: true,color: '#0000FF')
         sh '''__ver=$(cat VERSION)
 __docker_image_name=${APP_NAME}:${__ver}
 docker build -t ${__docker_image_name} .
