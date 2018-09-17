@@ -44,10 +44,10 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
 __docker_image_name=${APP_NAME}:${__ver}
 bash jenkins/prod_icp/deploy_step_1.sh ${__docker_image_name}
 '''
-        slackSend(message: "Deploying ${env.APP_NAME}...", channel: '#deployments', failOnError: true,color: '#0000FF')
+        slackSend(message: "Deploying ${env.APP_NAME} application...", channel: '#deployments', failOnError: true,color: '#0000FF')
         sh '''__ver=$(cat VERSION)
 __docker_image_name=${APP_NAME}:${__ver}
-bash jenkins/deploy_prod_icp.sh ${__docker_image_name}
+bash jenkins/prod_icp/deploy_step_2.sh ${__docker_image_name}
 '''
       }
     }
