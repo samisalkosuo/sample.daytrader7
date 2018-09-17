@@ -39,6 +39,12 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
         branch 'master'
       }
       steps {
+        slackSend(message: "Pushing ${env.APP_NAME} Docker image to ICP...", channel: '#deployments', failOnError: true,color: '#0000FF')
+        sh '''__ver=$(cat VERSION)
+__docker_image_name=${APP_NAME}:${__ver}
+bash jenkins/prod_icp/deploy_step_1.sh ${__docker_image_name}
+'''
+        slackSend(message: "Deploying ${env.APP_NAME}...", channel: '#deployments', failOnError: true,color: '#0000FF')
         sh '''__ver=$(cat VERSION)
 __docker_image_name=${APP_NAME}:${__ver}
 bash jenkins/deploy_prod_icp.sh ${__docker_image_name}

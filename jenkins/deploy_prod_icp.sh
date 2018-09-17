@@ -11,21 +11,21 @@ __image_name=$1
 #echo "CAM_URL: ${CAM_URL}"
 #echo "ICP_URL: ${ICP_URL}"
 
-echo "Deploying ${__image_name} to ICP..."
+   #echo "Deploying ${__image_name} to ICP..."
 
-__docker_registry=mycluster.icp:8500
-__namespace=default
+   #__docker_registry=mycluster.icp:8500
+   #__namespace=default
 
 #login to icp
-docker login ${__docker_registry} -u $CAM_USER -p $CAM_PASSWORD
+   #docker login ${__docker_registry} -u $CAM_USER -p $CAM_PASSWORD
 
 #remember to add docker registry certificate 
 #https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.3/manage_images/configuring_docker_cli.html
 #tag and push image
-__icp_image_name=${__docker_registry}/$__namespace/${__image_name}
-docker tag ${__image_name} ${__icp_image_name}
-echo "Pushing ${__image_name} to ICP..."
-docker push ${__icp_image_name}
+   #__icp_image_name=${__docker_registry}/$__namespace/${__image_name}
+   #docker tag ${__image_name} ${__icp_image_name}
+   #echo "Pushing ${__image_name} to ICP..."
+   #docker push ${__icp_image_name}
 
 #TODO: helm chart for liberty
 #https://www.ibm.com/support/knowledgecenter/en/was_beta_liberty/com.ibm.websphere.wlp.nd.multiplatform.doc/ae/twlp_icp_helm_way.html
