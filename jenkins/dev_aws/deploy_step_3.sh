@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
+set -o errexit
 
-#upload file to object storage
-#and store download url to file DOWNLOAD_URL.txt
-sh ${__work_dir}/upload_to_object_storage.sh
+source jenkins/dev_aws/variables.sh
+
+#Deploy service via CAM
 
 #CAM USER, CAM_PASSWORD, CAM_URL and ICP_URL
 #are set as Jenkins global environment variables
