@@ -34,6 +34,9 @@ __image_name=$1
 #bx pr login -a ${ICP_URL} --skip-ssl-validation -u $CAM_USER -p $CAM_PASSWORD -c id-mycluster-account
 #bx pr cluster-config mycluster
 
+source jenkins/prod_icp/variables.sh
+
+
 #Deploy docker image using kubectl
 
 #Login to ICP
