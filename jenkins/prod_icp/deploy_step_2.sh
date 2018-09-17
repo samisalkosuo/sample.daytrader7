@@ -41,7 +41,7 @@ __work_dir=jenkins
 
 echo "Creating ingress..."
 #name 'daytrader' is hardcoded in yaml file
-kubectl create -f ${__work_dir}/daytrader_ingress.yaml
+kubectl create -f ${__work_dir}/prod_icp/daytrader_ingress.yaml
 
 #sleep to make sure that ingress is created and docker container is running
 sleep 10
