@@ -12,7 +12,7 @@ pipeline {
         script {          
           if (env.COMMIT_MSG.contains ("nobuild")) {
             currentBuild.result = 'ABORTED'
-            slackSend(message: "ABORTED: ${env.JOB_NAME} ${env.BUILD_NUMBER}.", channel: '#deployments',color: '#FF0000')}
+            slackSend(message: "ABORTED automatically because of commit message: ${env.JOB_NAME} ${env.BUILD_NUMBER}.", channel: '#deployments',color: '#FF0000')}
             error('Aborting because of commit message.')
         }
       }
