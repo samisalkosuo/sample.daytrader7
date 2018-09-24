@@ -1,17 +1,15 @@
 pipeline {
   agent any
-  
+
   stages {
     stage('to build or not') {
       environment { 
         COMMIT_MSG = sh (returnStdout: true, script: 'git log --oneline -1 ${GIT_COMMIT}').trim()        
       }
-      steps {
-        if (env.COMMIT_MSG.contains ("nobuild")) {          
+      if (env.COMMIT_MSG.contains ("nobuild")) {          
           currentBuild.result = 'ABORTED'
           error('Aborting because of commit message.')
-        }
-      }
+      }      
     }
 
     stage('begin deployment - dev') {
