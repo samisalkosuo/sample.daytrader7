@@ -8,7 +8,7 @@ pipeline {
         COMMIT_MSG = sh (returnStdout: true, script: 'git log --oneline -1 ${GIT_COMMIT}').trim()        
       }
       steps {
-        echo 'Commit message: ${env.COMMIT_MSG}'
+        sh 'Commit message:  ${COMMIT_MSG}'
         script {          
           if (env.COMMIT_MSG.contains ("nobuild")) {
             currentBuild.result = 'ABORTED'
