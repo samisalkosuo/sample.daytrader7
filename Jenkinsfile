@@ -2,6 +2,7 @@ pipeline {
   agent any
 
   stages {
+    // checks last commit message and if it contains string 'nobuild', no build is done
     stage('to build or not') {
       environment { 
         COMMIT_MSG = sh (returnStdout: true, script: 'git log --oneline -1 ${GIT_COMMIT}').trim()        
