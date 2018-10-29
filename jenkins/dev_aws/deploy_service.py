@@ -45,6 +45,7 @@ for service in services:
         data = {
             'name': "Deployment: %s" % uuid,
             "owner": "nobody",
+            "action": "provision",
             "instance_plan": "Standard",
             "instance_parameters": {
                "app_download_url": app_download_url
