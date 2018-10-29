@@ -6,7 +6,7 @@ export PATH=~/.local/bin/:$PATH
 export __work_dir=jenkins/dev_aws
 
 #hardcoded template name
-export CAM_SERVICE_NAME="Daytrader@Frankfurt"
+export CAM_SERVICE_NAME="DaytraderAtFrankfurt"
 
 export __ver=$(cat VERSION) 
 export __tar_name=${APP_NAME}.tar
