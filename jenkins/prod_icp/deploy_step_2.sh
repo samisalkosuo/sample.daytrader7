@@ -18,14 +18,14 @@ source jenkins/prod_icp/variables.sh
 
 #Deploy docker image using kubectl
 
-#Login to ICP
-#echo 1 selects the first available account
-echo 1 | bx pr login -a ${ICP_URL} --skip-ssl-validation -u ${CAM_USER} -p ${CAM_PASSWORD}
+#Login to ICP and set default account id and default namespae
+cloudctl login -a ${ICP_URL} --skip-ssl-validation -u ${CAM_USER} -p ${CAM_PASSWORD} -c id-mycluster-account -n default
 
 #configure kubectl 
-bx pr cluster-config mycluster
+#cloudctl cluster-config mycluster
 
 #TODO: update apps in place instead of deleting
+#TODO: Helm chart
 
 echo "Deleting existing deployments..."
 __app_name=daytrader
