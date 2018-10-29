@@ -29,6 +29,7 @@ echo "Service ID ${__service_id} Instance ID ${__instance_id}"
 
 echo "Getting status..."
 python ${__work_dir}/get_service_status.py ${__service_id} ${__instance_id} 2> /dev/null
+cat DEPLOYMENT_STATUS
 __status=$(cat DEPLOYMENT_STATUS)
 
 #sleep a moment before continuing
