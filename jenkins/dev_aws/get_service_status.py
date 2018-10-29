@@ -55,6 +55,8 @@ while status!="active" and status!="error":
                 status = status.lower()
                 if status == "active":
                     #get ip address from active status
+                    print("instance data:")
+                    print(instance)
                     ipAddress=getIpAddress(instance)
                     f=open('IP_ADDRESS', 'w')
                     f.write(ipAddress)
