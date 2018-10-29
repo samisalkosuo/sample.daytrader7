@@ -24,19 +24,11 @@ CAM_URL=os.environ['CAM_URL']
 
 def getIpAddress(instance):
     #get template output IP address
-    #instanceJson=instance["template_mapping"]
-    #print("template_mapping instanceJson:")
-    #print(instanceJson)
-    #templateMappingId=json.dumps(instanceJson)
-    #templateMappingId=templateMappingId.replace("{","").replace('"',"")
-    #templateMappingId=templateMappingId[0:templateMappingId.find(":")]
-    #print("templateMappingId:")
-    #print(templateMappingId)
-    #hardcoded in service file
+    #id is hardcoded in service file
     templateMappingId="daytrade4913dc32"
     instanceJson=instance["activity_deployment_details"]["instance"][templateMappingId]
     ipAddress=instanceJson["template_outputs_IP address"]
-    print("template_mapping IP address:")
+    print("template_outputs_IP address:")
     print(ipAddress)
     return ipAddress
 
