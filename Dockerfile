@@ -22,6 +22,8 @@ RUN mvn install
 #Use WebSphere Liberty for actual image
 FROM websphere-liberty:javaee7
 
+USER root:root
+
 RUN apt-get update \
     && apt-get install -y curl
 
