@@ -1,13 +1,9 @@
 #multistage Docker file
 #build stage builds app
-#uses Maven with IBM JDK https://hub.docker.com/r/kazhar/maven/
-FROM kazhar/maven:0.1 as build-stage
+#uses daytrader build image that has Maven dependencies already downloaded
+FROM kazhar/daytrader:build as build-stage
 
 WORKDIR /
-
-#docker build cache, download libs etc
-COPY ./docker-build-cache /docker-build-cache
-RUN cd docker-build-cache && mvn install
 
 #copy files, if any source is changed these are changed
 #and app is built again
