@@ -1,7 +1,7 @@
 pipeline {
   agent any
   // TODO: check branch and exit if not building for branch
-  
+
   stages {
     // checks last commit message and if it contains string 'nobuild', no build is done
     stage('to build or not') {
@@ -70,10 +70,10 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
 __docker_image_name=${APP_NAME}:${__ver}
 bash jenkins/prod_icp/deploy_step_1.sh ${__docker_image_name}
 '''
-        slackSend(message: "Deploying ${env.APP_NAME} application...", channel: '#deployments', failOnError: true,color: '#0000FF')
+        slackSend(message: "Deploying Helm chart ${env.APP_NAME}...", channel: '#deployments', failOnError: true,color: '#0000FF')
         sh '''__ver=$(cat VERSION)
 __docker_image_name=${APP_NAME}:${__ver}
-bash jenkins/prod_icp/deploy_step_2.sh ${__docker_image_name}
+bash jenkins/prod_icp/deploy_step_helm.sh ${__docker_image_name}
 '''
       }
     }

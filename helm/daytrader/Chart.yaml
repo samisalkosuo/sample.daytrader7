@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Daytrader Helm chart for IBM Cloud Private.
+name: daytrader
+version: ||VERSION||
