@@ -72,13 +72,13 @@ echo "production deployment"
 __prod_host_name=daytrader.${ICP_PROXY_IP}.nip.io
 
 #create cert and secret
-#__app_prod_secret_name=app-prod-secret
+#__app_prod_secret_name=daytrader-secret
 #set +e
 #kubectl get secret |grep ${__app_prod_secret_name}
 #rc=$?
 #if [[ $rc != 0 ]]; then
   # create app prod secret
-#  __tls_name=app-prod-tls
+#  __tls_name=daytrader-tls
 #  openssl req -x509 -nodes -days 7000 -newkey rsa:2048 -keyout ${__tls_name}.key -out ${__tls_name}.crt -subj "/CN=${__prod_host_name}"
 #  kubectl create secret tls ${__app_prod_secret_name} --key ${__tls_name}.key --cert ${__tls_name}.crt
 #
@@ -88,10 +88,10 @@ __prod_host_name=daytrader.${ICP_PROXY_IP}.nip.io
 echo "Install Helm chart.."
 cd helm
 #modify Helm chart
-changeString app-prod/Chart.yaml "||VERSION||" ${__tag_name}
-changeString app-prod/values.yaml "||IMAGE_NAME||" mycluster.icp:8500/default/${__app_name}
-changeString app-prod/values.yaml "||IMAGE_TAG||" ${__tag_name}
-changeString app-prod/values.yaml "||HOST_NAME||" ${__prod_host_name}
+changeString daytrader/Chart.yaml "||VERSION||" ${__tag_name}
+changeString daytrader/values.yaml "||IMAGE_NAME||" mycluster.icp:8500/default/${__app_name}
+changeString daytrader/values.yaml "||IMAGE_TAG||" ${__tag_name}
+changeString daytrader/values.yaml "||HOST_NAME||" ${__prod_host_name}
 
 #package Helm
 helm package ${__app_name}
@@ -106,10 +106,10 @@ rc=$?
 if [[ $rc == 0 ]]; then
   #deployment exists
   echo "Deployment exists.. upgrading."
-  helm upgrade ${__app_name} local-charts/app-prod  --tls
+  helm upgrade ${__app_name} local-charts/daytrader  --tls
 else
   #deployment does not exist, install
-  helm install --name ${__app_name} local-charts/app-prod --tls
+  helm install --name ${__app_name} local-charts/daytrader --tls
 fi
 set -e
 
