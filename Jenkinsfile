@@ -1,10 +1,12 @@
 pipeline {
   agent any
-  // TODO: check branch and exit if not building for branch
 
   stages {
     // checks last commit message and if it contains string 'nobuild', no build is done
     stage('to build or not') {
+      when {
+        anyOf { branch 'master'; branch 'develop' }
+      }
       environment { 
         COMMIT_MSG = sh (returnStdout: true, script: 'git log --oneline -1 ${GIT_COMMIT}').trim()        
       }
@@ -38,7 +40,11 @@ pipeline {
         slackSend(message: "PROD build started: ${env.JOB_NAME} ${env.BUILD_NUMBER}...", channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }
+
     stage('Build Docker image') {
+      when {
+        anyOf { branch 'master'; branch 'develop' }
+      }
       steps {
         slackSend(message: "Building Docker image...", channel: '#deployments', failOnError: true,color: '#0000FF')
         sh '''__ver=$(cat VERSION)
@@ -47,6 +53,7 @@ docker build -t ${__docker_image_name} .
 docker tag ${__docker_image_name} ${APP_NAME}:latest'''
       }
     }
+
     stage('Development deployment to AWS') {
       when {
         branch 'develop'
@@ -60,6 +67,7 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
         sh 'bash jenkins/dev_aws/deploy_step_3.sh'
       }
     }
+
     stage('Production deployment to ICP') {
       when {
         branch 'master'
@@ -77,6 +85,7 @@ bash jenkins/prod_icp/deploy_step_helm.sh ${__docker_image_name}
 '''
       }
     }
+
     stage('end deployment - dev') {
       when {
         branch 'develop'
@@ -89,6 +98,7 @@ bash jenkins/prod_icp/deploy_step_helm.sh ${__docker_image_name}
         slackSend(message: "Development build ended: ${env.JOB_NAME} ${env.BUILD_NUMBER}\nApp running in AWS.\n\nApplication URL: https://${IP_ADDRESS}/", channel: '#deployments', failOnError: true,color: '#0000FF')
       }
     }
+
     stage('end deployment - prod') {
       when {
         branch 'master'
@@ -101,6 +111,7 @@ bash jenkins/prod_icp/deploy_step_helm.sh ${__docker_image_name}
       }
     }  
   }
+
   post { 
         failure { 
             slackSend(message: "FAILURE: ${env.JOB_NAME} ${env.BUILD_NUMBER}.", channel: '#deployments',color: '#FF0000')
@@ -110,7 +121,9 @@ bash jenkins/prod_icp/deploy_step_helm.sh ${__docker_image_name}
 
         }
     }
+
   environment {
     APP_NAME = 'daytrader7'
   }
+
 }
