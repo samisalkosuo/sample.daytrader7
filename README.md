@@ -32,14 +32,20 @@ Sample database with Daytrader data is provided as Docker image.
 
 ## Use case
 
-[Demonstrate DevOps pipeline](https://github.com/samisalkosuo/icp-cam-devops-demo) using this app and, for example, Jenkins, IBM Cloud Private and AWS.
+[DevOps pipeline demonstration](https://github.com/samisalkosuo/icp-cam-devops-demo) uses this app and Jenkins, IBM Cloud Private and AWS.
 
-- Change this application:
+To see the pipeline in action:
+
+- Update application:
   - open [daytrader-ee7-web/src/main/webapp/contentHome.html](daytrader-ee7-web/src/main/webapp/contentHome.html)
-  - Change the HTML code.
+  - Change/update the HTML code.
   - Update version in [VERSION](VERSION).
-- Commit and let DevOps pipeline do the deployment.
+- Commit, push and let DevOps pipeline do the deployment.
 - Go to application and see the change you made.
+
+## Helm chart
+
+A sample Helm chart to deploy this application is in helm-directory.
 
 ## Jmeter
 
