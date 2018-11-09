@@ -72,18 +72,18 @@ echo "production deployment"
 __prod_host_name=daytrader.${ICP_PROXY_IP}.nip.io
 
 #create cert and secret
-#__app_prod_secret_name=daytrader-secret
-#set +e
-#kubectl get secret |grep ${__app_prod_secret_name}
-#rc=$?
-#if [[ $rc != 0 ]]; then
+__app_prod_secret_name=daytrader-secret
+set +e
+kubectl get secret |grep ${__app_prod_secret_name}
+rc=$?
+if [[ $rc != 0 ]]; then
   # create app prod secret
-#  __tls_name=daytrader-tls
-#  openssl req -x509 -nodes -days 7000 -newkey rsa:2048 -keyout ${__tls_name}.key -out ${__tls_name}.crt -subj "/CN=${__prod_host_name}"
-#  kubectl create secret tls ${__app_prod_secret_name} --key ${__tls_name}.key --cert ${__tls_name}.crt
-#
-#fi
-#set -e
+  echo "Creating self-signed certificate"
+  __tls_name=daytrader-tls
+  openssl req -x509 -nodes -days 7000 -newkey rsa:2048 -keyout ${__tls_name}.key -out ${__tls_name}.crt -subj "/CN=${__prod_host_name}"
+  kubectl create secret tls ${__app_prod_secret_name} --key ${__tls_name}.key --cert ${__tls_name}.crt
+fi
+set -e
 
 echo "Install Helm chart.."
 cd helm
