@@ -53,8 +53,7 @@ helm init --skip-refresh
 helm repo add local-charts https://mycluster.icp:8443/helm-repo/charts
 helm repo update
 
-#hardcoded value
-__app_name=daytrader
+__app_name=${APP_NAME}
 
 #docker login
 docker login -u ${CAM_USER} -p ${CAM_PASSWORD} mycluster.icp:8500
