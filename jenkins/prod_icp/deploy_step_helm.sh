@@ -116,4 +116,4 @@ set -e
 
 echo "Daytrader should be deployed: https://${__prod_host_name}."
 
-echo https://${__prod_host_name} > ICP_APP_URL
+echo https://${__prod_host_name} > ../ICP_APP_URL
