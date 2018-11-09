@@ -92,6 +92,7 @@ changeString ${__app_name}/Chart.yaml "||VERSION||" ${__tag_name}
 changeString ${__app_name}/values.yaml "||IMAGE_NAME||" mycluster.icp:8500/default/${__app_name}
 changeString ${__app_name}/values.yaml "||IMAGE_TAG||" ${__tag_name}
 changeString ${__app_name}/values.yaml "||HOST_NAME||" ${__prod_host_name}
+changeString ${__app_name}/values.yaml "||DB_IP_ADDRESS||" ${DAYTRADER_DB_IP}
 
 #package Helm
 helm package ${__app_name}
