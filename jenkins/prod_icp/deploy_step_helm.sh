@@ -106,10 +106,10 @@ rc=$?
 if [[ $rc == 0 ]]; then
   #deployment exists
   echo "Deployment exists.. upgrading."
-  helm upgrade ${__app_name} local-charts/daytrader  --tls
+  helm upgrade ${__app_name} local-charts/${__app_name} --tls
 else
   #deployment does not exist, install
-  helm install --name ${__app_name} local-charts/daytrader --tls
+  helm install --name ${__app_name} local-charts/${__app_name} --tls
 fi
 set -e
 
