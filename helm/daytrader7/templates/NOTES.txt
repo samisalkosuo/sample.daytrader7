@@ -3,3 +3,4 @@ Application URL:
 {{- range .Values.ingress.hosts }}
   https://{{ . }}
 {{- end }}
+{{- end }}
