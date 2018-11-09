@@ -17,7 +17,13 @@ ingress:
   hosts:
     - ||HOST_NAME||
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    #nginx.ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/affinity: cookie
+    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/secure-backends: true
+    ingress.kubernetes.io/session-cookie-hash: sha1
+    ingress.kubernetes.io/session-cookie-name: route
+    kubernetes.io/ingress.class: nginx
 #  tls:
      #Secrets must be manually created in the namespace.
 #     - secretName: daytrader-secret
