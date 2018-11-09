@@ -26,13 +26,13 @@ spec:
             - containerPort: {{ .Values.service.internalPort }}
           livenessProbe:
             httpGet:
-              path: /
+              path: /servlet/PingServlet2Include
               port: {{ .Values.service.internalPort }}
             initialDelaySeconds: 10
             periodSeconds: 30
           readinessProbe:
             httpGet:
-              path: /
+              path: /servlet/PingServlet2Include
               port: {{ .Values.service.internalPort }}
             initialDelaySeconds: 10
             periodSeconds: 30
