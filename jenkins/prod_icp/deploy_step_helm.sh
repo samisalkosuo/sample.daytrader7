@@ -88,10 +88,10 @@ __prod_host_name=daytrader.${ICP_PROXY_IP}.nip.io
 echo "Install Helm chart.."
 cd helm
 #modify Helm chart
-changeString daytrader/Chart.yaml "||VERSION||" ${__tag_name}
-changeString daytrader/values.yaml "||IMAGE_NAME||" mycluster.icp:8500/default/${__app_name}
-changeString daytrader/values.yaml "||IMAGE_TAG||" ${__tag_name}
-changeString daytrader/values.yaml "||HOST_NAME||" ${__prod_host_name}
+changeString ${__app_name}/Chart.yaml "||VERSION||" ${__tag_name}
+changeString ${__app_name}/values.yaml "||IMAGE_NAME||" mycluster.icp:8500/default/${__app_name}
+changeString ${__app_name}/values.yaml "||IMAGE_TAG||" ${__tag_name}
+changeString ${__app_name}/values.yaml "||HOST_NAME||" ${__prod_host_name}
 
 #package Helm
 helm package ${__app_name}
@@ -113,7 +113,4 @@ else
 fi
 set -e
 
-
 echo "Daytrader should be deployed: https://${__prod_host_name}."
-
-
