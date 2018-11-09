@@ -1,6 +1,7 @@
 pipeline {
   agent any
-
+  // TODO: check branch and exit if not building for branch
+  
   stages {
     // checks last commit message and if it contains string 'nobuild', no build is done
     stage('to build or not') {
