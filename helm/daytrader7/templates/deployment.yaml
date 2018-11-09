@@ -19,6 +19,9 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:          
+            - name: REMOTE_DB_IP_ADDRESS
+              value: ||DB_IP_ADDRESS||
           ports:
             - containerPort: {{ .Values.service.internalPort }}
           resources:
