@@ -9,8 +9,8 @@ image:
 service:
   name: daytrader
   type: ClusterIP
-  externalPort: 8080
-  internalPort: 8080
+  externalPort: 9443
+  internalPort: 9443
 ingress:
   enabled: true
   # Used to create an Ingress record.
@@ -18,7 +18,13 @@ ingress:
     - ||HOST_NAME||
   annotations:
     # kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    #nginx.ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/affinity: cookie
+    ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/secure-backends: true
+    ingress.kubernetes.io/session-cookie-hash: sha1
+    ingress.kubernetes.io/session-cookie-name: route
+    kubernetes.io/ingress.class: nginx
 #  tls:
      #Secrets must be manually created in the namespace.
 #     - secretName: daytrader-secret
