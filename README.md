@@ -12,7 +12,7 @@ Usage:
   - ```docker run -it --rm -p 9080:9082 -e REMOTE_DB_IP_ADDRESS=10.0.75.1 daytrader```
   - Derby server is in specified IP address.
   - Remember to create tables and populate database, if not using sample database.
-- Access the app: http://127.0.0.1:9080/daytrader
+- Access the app: http://127.0.0.1:9080/
 - Login credentials:
   - Username: *uid:0*
   - Password: *xxx*
