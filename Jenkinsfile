@@ -1,6 +1,8 @@
 pipeline {
   agent any
 
+  stages {
+
     stage('begin deployment - test') {
       when {
         branch 'test'
@@ -37,11 +39,11 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
       }
       steps {
         slackSend(message: "Saving ${env.APP_NAME} Docker image...", channel: '#deployments', failOnError: true,color: '#0000FF')
-        sh 'bash jenkins/dev_aws/deploy_step_1.sh'
+        sh 'bash jenkins/test_aws/deploy_step_1.sh'
         slackSend(message: "Uploading ${env.APP_NAME} Docker image to IBM Cloud Object Storage...", channel: '#deployments', failOnError: true,color: '#0000FF')
-        sh 'bash jenkins/dev_aws/deploy_step_2.sh'
+        sh 'bash jenkins/test_aws/deploy_step_2.sh'
         slackSend(message: "Deploying ${env.APP_NAME} to AWS using CAM...", channel: '#deployments', failOnError: true,color: '#0000FF')
-        sh 'bash jenkins/dev_aws/deploy_step_3.sh'
+        sh 'bash jenkins/test_aws/deploy_step_3.sh'
       }
     }
 
