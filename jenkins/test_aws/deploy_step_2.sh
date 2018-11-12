@@ -2,7 +2,7 @@
 
 set -o errexit
 
-source jenkins/dev_aws/variables.sh
+source jenkins/test_aws/variables.sh
 
 # read varible from file
 export DOCKER_IMAGE_TAR_FILE=$(cat DOCKER_IMAGE_TAR_FILE)

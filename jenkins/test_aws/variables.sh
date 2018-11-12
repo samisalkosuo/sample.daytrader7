@@ -3,7 +3,7 @@
 export PATH=~/.local/bin/:$PATH
 
 #set work dir because jenkins executes this from parent dir
-export __work_dir=jenkins/dev_aws
+export __work_dir=jenkins/test_aws
 
 #hardcoded template name
 export CAM_SERVICE_NAME="DaytraderAtFrankfurt"

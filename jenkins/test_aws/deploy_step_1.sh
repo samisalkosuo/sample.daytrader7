@@ -2,7 +2,7 @@
 
 set -o errexit
 
-source jenkins/dev_aws/variables.sh
+source jenkins/test_aws/variables.sh
 
 #install python prereqs
 pip install requests
