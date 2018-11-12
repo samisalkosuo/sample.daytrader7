@@ -36,16 +36,27 @@ Sample database with Daytrader data is provided as Docker image.
 
 To see the pipeline in action:
 
-- Update application:
+- Update application in develop-branch:
   - open [daytrader-ee7-web/src/main/webapp/contentHome.html](daytrader-ee7-web/src/main/webapp/contentHome.html)
   - Change/update the HTML code.
   - Update version in [VERSION](VERSION).
-- Commit, push and let DevOps pipeline do the deployment.
+- Merge develop to test/master, commit, push and let DevOps pipeline do the deployment.
 - Go to application and see the change you made.
 
 ## Helm chart
 
 A sample Helm chart to deploy this application is in helm-directory.
+
+## Branches
+
+The branches of this repository are used in [DevOps pipeline demonstration](https://github.com/samisalkosuo/icp-cam-devops-demo).
+
+- develop - Development work. No automatic build.
+- build - No automatic build/deployment except automatic build of [kazhar/daytrader:build](https://hub.docker.com/r/kazhar/daytrader/) Docker image.
+- test - Test environment using automatic build & deployment to AWS. 
+- master - Production build. Automatic build & deployment to on-premise IBM Cloud Private. 
+
+The idea is that all work is done using develop-branch and when application is ready for testing, develop is merged to test-branch and application is tested running in AWS. When application is ready for production, test or develop branch is merged to master and automatic deployment deploys the application on IBM Cloud Private.
 
 ## Jmeter
 
