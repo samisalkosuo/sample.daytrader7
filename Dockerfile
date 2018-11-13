@@ -20,6 +20,8 @@ FROM websphere-liberty:javaee7
 
 USER root:root
 
+#curl is installed because configure_daytrader.sh script uses curl 
+#to configure daytrader database
 RUN apt-get update \
     && apt-get install -y curl
 
