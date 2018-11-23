@@ -8,7 +8,8 @@ export __work_dir=jenkins/test_aws
 #hardcoded template name
 export CAM_SERVICE_NAME="DaytraderAtFrankfurt"
 
-export __ver=$(cat VERSION) 
+source build.env
+
 export __tar_name=${APP_NAME}.tar
 
 export __gz_name=${__tar_name}.gz

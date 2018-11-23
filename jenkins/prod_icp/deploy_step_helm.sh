@@ -60,10 +60,7 @@ __app_name=${APP_NAME}
 #docker login
 docker login -u ${CAM_USER} -p ${CAM_PASSWORD} mycluster.icp:8500
 
-#tag name is latest version
-__tag_name=$(cat VERSION)
-
-__icp_image_name=mycluster.icp:8500/default/${__app_name}:${__tag_name}
+__icp_image_name=mycluster.icp:8500/default/${__app_name}:${VERSION}
 docker tag ${__app_name}:latest ${__icp_image_name}
 
 #push docker image to ICP
@@ -90,9 +87,9 @@ set -e
 echo "Install Helm chart.."
 cd helm
 #modify Helm chart
-changeString ${__app_name}/Chart.yaml "||VERSION||" ${__tag_name}
+changeString ${__app_name}/Chart.yaml "||VERSION||" ${VERSION}
 changeString ${__app_name}/values.yaml "||IMAGE_NAME||" mycluster.icp:8500/default/${__app_name}
-changeString ${__app_name}/values.yaml "||IMAGE_TAG||" ${__tag_name}
+changeString ${__app_name}/values.yaml "||IMAGE_TAG||" ${VERSION}
 changeString ${__app_name}/values.yaml "||HOST_NAME||" ${__prod_host_name}
 changeString ${__app_name}/templates/deployment.yaml "||DB_IP_ADDRESS||" ${DAYTRADER_DB_IP}
 
