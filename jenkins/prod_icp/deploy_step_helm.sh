@@ -96,6 +96,8 @@ changeString ${__app_name}/values.yaml "||IMAGE_TAG||" ${__tag_name}
 changeString ${__app_name}/values.yaml "||HOST_NAME||" ${__prod_host_name}
 changeString ${__app_name}/templates/deployment.yaml "||DB_IP_ADDRESS||" ${DAYTRADER_DB_IP}
 
+#remove old packages
+rm -rf *tgz
 #package Helm
 helm package ${__app_name}
 __helm_tar_file=$(ls *tgz)
