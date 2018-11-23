@@ -115,6 +115,8 @@ else
 fi
 set -e
 
+#TODO: add check when new version is really deployed
+
 echo "Daytrader should be deployed: https://${__prod_host_name}."
 
 echo https://${__prod_host_name} > ../ICP_APP_URL
