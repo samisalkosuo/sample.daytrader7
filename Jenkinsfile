@@ -1,6 +1,11 @@
 pipeline {
   agent any
 
+  //application name
+  environment {
+    APP_NAME = 'daytrader7'
+  }
+
   stages {
 
     stage('begin deployment - test') {
@@ -26,10 +31,7 @@ pipeline {
       }
       steps {
         slackSend(message: "Building Docker image...", channel: '#deployments', failOnError: true,color: '#0000FF')
-        sh '''__ver=$(cat VERSION)
-__docker_image_name=${APP_NAME}:${__ver}
-docker build -t ${__docker_image_name} .
-docker tag ${__docker_image_name} ${APP_NAME}:latest'''
+        sh 'bash jenkins/build_docker_image.sh'
       }
     }
 
@@ -53,15 +55,9 @@ docker tag ${__docker_image_name} ${APP_NAME}:latest'''
       }
       steps {
         slackSend(message: "Pushing ${env.APP_NAME} Docker image to ICP...", channel: '#deployments', failOnError: true,color: '#0000FF')
-        sh '''__ver=$(cat VERSION)
-__docker_image_name=${APP_NAME}:${__ver}
-bash jenkins/prod_icp/deploy_step_1.sh ${__docker_image_name}
-'''
+        sh '''bash jenkins/prod_icp/deploy_step_1.sh'''
         slackSend(message: "Deploying Helm chart ${env.APP_NAME}...", channel: '#deployments', failOnError: true,color: '#0000FF')
-        sh '''__ver=$(cat VERSION)
-__docker_image_name=${APP_NAME}:${__ver}
-bash jenkins/prod_icp/deploy_step_helm.sh ${__docker_image_name}
-'''
+        sh '''bash jenkins/prod_icp/deploy_step_helm.sh'''
       }
     }
 
@@ -101,8 +97,5 @@ bash jenkins/prod_icp/deploy_step_helm.sh ${__docker_image_name}
         }
     }
 
-  environment {
-    APP_NAME = 'daytrader7'
-  }
 
 }

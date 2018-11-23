@@ -4,7 +4,9 @@ set -o errexit
 
 #Deploy Daytrader app to ICP using Helm chart
 
-__image_name=$1
+source build.env
+
+__image_name=${APP_NAME}:${VERSION}
 
 source jenkins/prod_icp/variables.sh
 

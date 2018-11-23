@@ -4,8 +4,9 @@ set -o errexit
 
 #Deploy Daytrader app to ICP
 #Step 1 push image
+source build.env
 
-__image_name=$1
+__image_name=${APP_NAME}:${VERSION}
 
 #echo "CAM_USER: ${CAM_USER}"
 #echo "CAM_PASSWORD: ${CAM_PASSWORD}"
