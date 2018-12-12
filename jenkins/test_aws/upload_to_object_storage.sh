@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 #uploads application file to IBM Object Storage
 
 #these variables must be available in environment
@@ -26,14 +25,14 @@ if [ $rv -ne 0 ]; then
     ibmcloud resource service-key-create ${__cos_key_name} Writer --instance-name $__cos_instance_name -p {\"HMAC\":true}
 fi
 
-set -e
-
 #get service key
 __key_file=key.txt
 ibmcloud resource service-key ${__cos_key_name} > ${__key_file}
 
 export AWS_ACCESS_KEY_ID=$(cat $__key_file | grep access_key_id | awk '{print $2}')
 export AWS_SECRET_ACCESS_KEY=$(cat $__key_file | grep secret_access_key | awk '{print $2}')
+
+set -e
 
 #bucket name must be unique
 #this create globally unique identifier
