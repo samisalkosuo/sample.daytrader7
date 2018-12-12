@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 #uploads application file to IBM Object Storage
 
 #these variables must be available in environment
