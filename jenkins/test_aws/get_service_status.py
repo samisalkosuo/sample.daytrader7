@@ -61,7 +61,7 @@ while status!="active" and status!="error":
                     f=open('IP_ADDRESS', 'w')
                     f.write(ipAddress)
                     f.close()
-    time.sleep(10)
+    time.sleep(30)
         #print(instance["Status"])
         #print("Name: %s ServiceID: %s Instance ID: %s Status: %s" % (instance["name"],instance["ServiceID"],instance["id"],instance["Status"]))
 
