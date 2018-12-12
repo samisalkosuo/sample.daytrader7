@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
 
 #uploads application file to IBM Object Storage
 
@@ -26,6 +25,8 @@ if [ $rv -ne 0 ]; then
     ibmcloud resource service-instance-create ${__cos_instance_name} cloud-object-storage lite global
     ibmcloud resource service-key-create ${__cos_key_name} Writer --instance-name $__cos_instance_name -p {\"HMAC\":true}
 fi
+
+set -e
 
 #get service key
 __key_file=key.txt
