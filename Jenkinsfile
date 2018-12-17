@@ -1,9 +1,10 @@
 pipeline {
   agent any
 
-  //application name
   environment {
+    //application name
     APP_NAME = 'daytrader7'
+    //credentials
     ICP_ADMIN_CREDS=credentials('icp-admin-user-creds')
     CAM_USER_CREDS=credentials('cam-user-creds')
     IBMCLOUD_API_KEY=credentials('ibm-cloud-api-key')
