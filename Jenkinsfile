@@ -6,6 +6,7 @@ pipeline {
     APP_NAME = 'daytrader7'
     ICP_ADMIN_CREDS=credentials('icp-admin-user-creds')
     CAM_USER_CREDS=credentials('cam-user-creds')
+    IBMCLOUD_API_KEY=credentials('ibm-cloud-api-key')
   }
 
   stages {

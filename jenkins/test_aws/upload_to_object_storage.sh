@@ -4,6 +4,8 @@
 
 #these variables must be available in environment
 #IBMCLOUD_API_KEY
+
+
 IBMCLOUD_ENDPOINT_URL=https://api.eu-de.bluemix.net
 
 export AWS_DEFAULT_REGION=ams03-standard
