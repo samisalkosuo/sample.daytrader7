@@ -13,7 +13,7 @@ source jenkins/prod_icp/variables.sh
 #Deploy Daytrader using Helm chart
 
 #Login to ICP and set default account id and default namespae
-cloudctl login -a ${ICP_URL} --skip-ssl-validation -u ${CAM_USER} -p ${CAM_PASSWORD} -c id-mycluster-account -n default
+cloudctl login -a ${ICP_URL} --skip-ssl-validation -u $ICP_ADMIN_CREDS_USR -p $ICP_ADMIN_CREDS_PSW -c id-mycluster-account -n default
 
 #function that changes occurrences of string in file
 function changeString {
@@ -58,7 +58,7 @@ helm repo update
 __app_name=${APP_NAME}
 
 #docker login
-docker login -u ${CAM_USER} -p ${CAM_PASSWORD} mycluster.icp:8500
+docker login -u $ICP_ADMIN_CREDS_USR -p $ICP_ADMIN_CREDS_PSW mycluster.icp:8500
 
 __icp_image_name=mycluster.icp:8500/default/${__app_name}:${VERSION}
 docker tag ${__app_name}:latest ${__icp_image_name}

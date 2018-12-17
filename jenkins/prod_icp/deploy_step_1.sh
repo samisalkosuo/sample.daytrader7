@@ -8,17 +8,12 @@ source build.env
 
 __image_name=${APP_NAME}:${VERSION}
 
-#echo "CAM_USER: ${CAM_USER}"
-#echo "CAM_PASSWORD: ${CAM_PASSWORD}"
-#echo "CAM_URL: ${CAM_URL}"
-#echo "ICP_URL: ${ICP_URL}"
-
 echo "Deploying ${__image_name} to ICP..."
 
 source jenkins/prod_icp/variables.sh
 
 #login to icp
-docker login ${__docker_registry} -u $CAM_USER -p $CAM_PASSWORD
+docker login ${__docker_registry} -u $ICP_ADMIN_CREDS_USR -p $ICP_ADMIN_CREDS_PSW
 
 #remember to add docker registry certificate 
 #https://www.ibm.com/support/knowledgecenter/en/SSBS6K_2.1.0.3/manage_images/configuring_docker_cli.html

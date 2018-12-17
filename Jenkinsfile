@@ -4,6 +4,7 @@ pipeline {
   //application name
   environment {
     APP_NAME = 'daytrader7'
+    ICP_ADMIN_CREDS=credentials('icp-admin-user-creds')
   }
 
   stages {
