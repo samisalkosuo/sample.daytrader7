@@ -6,12 +6,10 @@ source jenkins/test_aws/variables.sh
 
 #Deploy service via CAM
 
-#CAM USER, CAM_PASSWORD, CAM_URL and ICP_URL
+#CAM USER, CAM_PASSWORD
+#are set as Jenkins credentials
+#CAM_URL and ICP_URL
 #are set as Jenkins global environment variables
-echo "CAM_USER: ${CAM_USER}"
-echo "CAM_PASSWORD: ${CAM_PASSWORD}"
-echo "CAM_URL: ${CAM_URL}"
-echo "ICP_URL: ${ICP_URL}"
 
 echo "Setting up CAM API..."
 source ${__work_dir}/cam_api_setup.sh 
